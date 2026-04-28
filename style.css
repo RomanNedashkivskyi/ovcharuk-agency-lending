@@ -448,6 +448,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url('img/e8c3237e-a816-4df6-8097-db2ed67ef9ff.png');
 }
 
 .reviews-overlay {
@@ -555,7 +556,6 @@ body {
     line-height: 1.6;
 }
 
-/* Стрілки */
 .slider-arrow {
     background: none;
     border: none;
