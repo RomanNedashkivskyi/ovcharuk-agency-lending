@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="style.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ovcharuk Agency</title>
+    <link rel="icon" type="image/png" href="/img/5752224.png">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <a href="#" class="logo">OVCHARUK <span class="accent">AGENCY</span></a>
+            <nav class="nav-menu">
+                <a href="#about" class="nav-link">Про нас</a>
+                <a href="#services" class="nav-link">Послуги</a>
+                <a href="#reviews" class="nav-link">Відгуки</a>
+                <a href="#" class="nav-link">Контакти</a>
+            </nav>
+            <div class="socials">
+                <a href="https://www.instagram.com/ovcharuk_agency" target="_blank" class="insta-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <div class="mobile-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+<section class="hero">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">БУДУЄМО БІЗНЕСИ, ЩО <span class="neon">ПРОДАЮТЬ.</span></h1>
+            <p class="hero-subtitle">Просування у Tik Tok & Instagram reels | SMM | Оренда костюмів</p>
+            <div class="hero-btns">
+                <a href="#order" class="btn-primary">Замовити послугу</a>
+            </div>
+        </div>
+        <div class="hero-image animated-photo"> <img src="/img/a592d7a8-b631-4e0e-ae82-aac5482f0816.jpg" alt="Ovcharuk">
+        </div>
+    </div>
+    <div class="glow-divider"></div> 
+</section>
+
+    <section class="info-cards" id="services">
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-line-top"></div>
+                <div class="card-icon"><i class="fab fa-instagram"></i></div>
+                <h2 class="card-title">Instagram Reels</h2>
+                <p class="card-text">Створюємо віральний контент, який залучає нову аудиторію та підвищує впізнаваність бренду.</p>
+                <a href="#" class="card-btn">Дізнатись більше</a>
+                <div class="card-line-bottom"></div>
+            </div>
+            <div class="card">
+                <div class="card-line-top"></div>
+                <div class="card-icon"><i class="fab fa-tiktok"></i></div>
+                <h2 class="card-title">TikTok Promo</h2>
+                <p class="card-text">Трендові стратегії просування, що виводять ваші відео в рекомендації.</p>
+                <a href="#" class="card-btn">Дізнатись більше</a>
+                <div class="card-line-bottom"></div>
+            </div>
+            <div class="card">
+                <div class="card-line-top"></div>
+                <div class="card-icon"><i class="fab fa-instagram"></i></div>
+                <h2 class="card-title">SvoЯ Card</h2>
+                <p class="card-text">Отримуй 50% знижки на суші та піцу. Забирай свою промо-картку вже зараз!</p>
+                <a href="#" class="card-btn">Дізнатись більше</a>
+                <div class="card-line-bottom"></div>
+            </div>
+        </div>
+        <div class="section-blur-bottom"></div>
+    </section>
+
+    <section class="order-section" id="order">
+        <div class="order-bg-overlay" style="background-image: url('/img/Gemini_Generated_Image_5bz5es5bz5es5bz5.png');"></div>
+        <div class="order-container">
+            <h2 class="order-title">Замовити <span class="neon-text">послугу</span> агенції</h2>
+            <div class="central-separator"></div>
+            <form class="order-form" onsubmit="event.preventDefault(); showOrderNotification();">
+                <div class="input-group">
+                    <input type="text" placeholder="Прізвище та Ім'я" required>
+                </div>
+                <div class="input-group with-icon">
+                    <i class="fas fa-phone-alt input-icon"></i>
+                    <input type="tel" id="phone-input" placeholder="+380 -- --- -- --" required>
+                </div>
+                <div class="input-group with-icon">
+                    <i class="fab fa-instagram input-icon"></i>
+                    <input type="text" placeholder="Юзернейм інсти" required>
+                </div>
+                <div class="input-group">
+                    <select class="custom-select" required>
+                        <option value="" disabled selected>Виберіть послугу</option>
+                        <option value="inst">Inst Reels</option>
+                        <option value="tt">Tik Tok Reels</option>
+                        <option value="smm">SMM послуги</option>
+                        <option value="costume">Замовити костюм</option>
+                        <option value="card">Отримати карту</option>
+                    </select>
+                </div>
+                <button type="submit" class="order-submit-btn">Відправити запит</button>
+            </form>
+        </div>
+    </section>
+
+<section class="benefits-section" id="about">
+    <div class="cards-container">
+        <div class="card benefit-card">
+            <div class="card-line-top"></div>
+            <div class="card-icon benefit-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <h2 class="card-title">Локальна експертиза</h2>
+            <p class="card-text">Знаємо кожну стильну локацію Хмельницького та особливості місцевого ринку. Ваш контент буде рідним для аудиторії.</p>
+            <div class="card-line-bottom"></div>
+        </div>
+
+        <div class="card benefit-card">
+            <div class="card-line-top"></div>
+            <div class="card-icon benefit-icon"><i class="fas fa-chart-line"></i></div>
+            <h2 class="card-title">Алгоритмічний підхід</h2>
+            <p class="card-text">Ми не просто знімаємо - ми знаємо психологію глядача. Створюємо відео, які алгоритми самі просувають у ТОП.</p>
+            <div class="card-line-bottom"></div>
+        </div>
+
+        <div class="card benefit-card">
+            <div class="card-line-top"></div>
+            <div class="card-icon benefit-icon"><i class="fas fa-eye"></i></div>
+            <h2 class="card-title">Прозорі результати</h2>
+            <p class="card-text">Чітка звітність та зрозумілі показники. Ви бачите реальний вплив нашої роботи на залучення вашого бренду.</p>
+            <div class="card-line-bottom"></div>
+        </div>
+    </div>
+    <div class="glow-divider"></div>
+</section>
+
+<section class="reviews-section" id="reviews" style="background-image: url('/img/e8c3237e-a816-4df6-8097-db2ed67ef9ff.png');">
+    <div class="reviews-overlay"></div>
+    <div class="reviews-container">
+        <h2 class="reviews-main-title">Відгуки <span class="neon-text">клієнтів</span></h2>
+        <p class="reviews-subtitle">Результати нашої роботи говорять самі за себе через досвід наших партнерів.</p>
+        <div class="central-separator review-sep"></div>
+
+        <div class="slider-wrapper">
+            <button class="slider-arrow prev-arrow">&#10094;</button>
+            
+            <div class="reviews-slider">
+                <div class="reviews-track">
+                    <div class="card review-card">
+                        <h3 class="reviewer-name">Олексій Волков</h3>
+                        <div class="reviewer-avatar-container">
+                            <img src="/img/5752224.png" alt="User" class="reviewer-avatar">
+                        </div>
+                        <div class="rating-stars">★★★★★</div>
+                        <div class="card-line-review"></div>
+                        <h4 class="review-topic">Вибуховий ріст TikTok</h4>
+                        <p class="review-text">Завдяки креативному підходу команди, наші відео почали стабільно залітати в рек. Продажі зросли втричі!</p>
+                    </div>
+
+                    <div class="card review-card">
+                        <h3 class="reviewer-name">Марія Кравченко</h3>
+                        <div class="reviewer-avatar-container">
+                            <img src="/img/5752224.png" alt="User" class="reviewer-avatar">
+                        </div>
+                        <div class="rating-stars">★★★★☆</div>
+                        <div class="card-line-review"></div>
+                        <h4 class="review-topic">Якісний SMM</h4>
+                        <p class="review-text">Дуже задоволена візуалом профілю. Команда відчуває стиль бренду. Чекаємо на ще більшу активність.</p>
+                    </div>
+
+                    <div class="card review-card">
+                        <h3 class="reviewer-name">Дмитро Соколов</h3>
+                        <div class="reviewer-avatar-container">
+                            <img src="/img/5752224.png" alt="User" class="reviewer-avatar">
+                        </div>
+                        <div class="rating-stars">★★★★★</div>
+                        <div class="card-line-review"></div>
+                        <h4 class="review-topic">Професійні Reels</h4>
+                        <p class="review-text">Монтаж просто на висоті! Відео виглядають дорого і сучасно. Охоплення піднялися з першого ж тижня.</p>
+                    </div>
+
+                    <div class="card review-card">
+                        <h3 class="reviewer-name">Олена Коваль</h3>
+                        <div class="reviewer-avatar-container">
+                            <img src="/img/5752224.png" alt="User" class="reviewer-avatar">
+                        </div>
+                        <div class="rating-stars">★★★★★</div>
+                        <div class="card-line-review"></div>
+                        <h4 class="review-topic">Системний підхід</h4>
+                        <p class="review-text">Найкраще рішення для нашого бізнесу. Команда бере на себе все: від ідеї до реальних лідів.</p>
+                    </div>
+
+                    <div class="card review-card">
+                        <h3 class="reviewer-name">Ігор Марченко</h3>
+                        <div class="reviewer-avatar-container">
+                            <img src="/img/5752224.png" alt="User" class="reviewer-avatar">
+                        </div>
+                        <div class="rating-stars">★★★★☆</div>
+                        <div class="card-line-review"></div>
+                        <h4 class="review-topic">Просування бренду</h4>
+                        <p class="review-text">Результат перевершив очікування. Аудиторія стала лояльнішою. Продовжуємо нашу співпрацю!</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="slider-arrow next-arrow">&#10095;</button>
+        </div>
+        <div class="extra-spacing"></div>
+    </div>
+</section>
+    <script src="index.js"></script>
+</body>
+</html>
