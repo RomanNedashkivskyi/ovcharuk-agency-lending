@@ -706,6 +706,7 @@ body {
     .review-card { min-width: 100%; }
     .slider-arrow { display: none; }
 }
+<<<<<<< HEAD
 
 @keyframes morph {
     0% {
@@ -718,3 +719,5 @@ body {
         border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     }
 }
+=======
+>>>>>>> 6d3567744ae0d28a72f8fb63a79d8c27dd4d98af
