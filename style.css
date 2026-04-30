@@ -718,3 +718,104 @@ body {
         border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     }
 }
+
+@media screen and (max-width: 768px) {
+    header.main-header .header-container {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 15px 20px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        left: 0 !important;
+        transform: none !important;
+    }
+    
+    header.main-header .logo-container {
+        margin: 0 !important;
+        display: block !important;
+        flex: 0 1 auto !important;
+    }
+
+    header.main-header .socials {
+        display: flex !important;
+        margin: 0 !important;
+    }
+
+    header.main-header .socials a {
+        display: none !important;
+    }
+
+    header.main-header .socials a:has(.fa-instagram), 
+    header.main-header .socials a i.fa-instagram {
+        display: flex !important;
+        font-size: 22px !important;
+    }
+
+    header.main-header .nav-menu, 
+    header.main-header .mobile-toggle, 
+    header.main-header .header-btns,
+    header.main-header .lang-switch { 
+        display: none !important;
+    }
+
+    .hero-container {
+        display: flex !important;
+        flex-direction: column !important; 
+        align-items: center !important;
+        text-align: center !important;
+        padding-top: 20px !important;
+    }
+
+    .hero-image {
+        order: -1 !important;
+        margin-bottom: 20px !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .hero-image img {
+        max-width: 250px !important;
+        height: auto !important;
+    }
+
+    .hero-content {
+        order: 2 !important;
+        width: 100% !important;
+    }
+
+    .hero-title {
+        font-size: 26px !important;
+        line-height: 1.2 !important;
+        margin-bottom: 10px !important;
+    }
+
+    .hero-subtitle {
+        font-size: 15px !important;
+        margin-bottom: 25px !important;
+        padding: 0 10px !important;
+    }
+
+    .hero-btns {
+        order: 3 !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .reviews-track {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        gap: 15px !important;
+        padding: 20px !important;
+    }
+
+    .review-card {
+        min-width: 85vw !important;
+        scroll-snap-align: center;
+    }
+
+    .slider-arrow { display: none !important; }
+}
