@@ -76,3 +76,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('resize', updateSlider);
 });
+
+const workflowSteps = document.querySelectorAll('.workflow-step');
+const workflowObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0) scale(1)";
+            }, index * 200);
+        }
+    });
+}, { threshold: 0.1 });
+
+workflowSteps.forEach(step => {
+    step.style.opacity = "0";
+    step.style.transform = "translateY(20px) scale(0.9)";
+    step.style.transition = "all 0.6s ease-out";
+    workflowObserver.observe(step);
+});
