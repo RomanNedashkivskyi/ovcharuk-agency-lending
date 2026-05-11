@@ -1,22 +1,33 @@
+(function () {
+    const header = document.querySelector(".main-header");
+    if (!header) return;
+    const setScrolled = () => {
+        header.classList.toggle("is-scrolled", window.scrollY > 12);
+    };
+    window.addEventListener("scroll", setScrolled, { passive: true });
+    setScrolled();
+})();
+
 const phoneInput = document.getElementById('phone-input');
+if (phoneInput) {
+    phoneInput.addEventListener('focus', function () {
+        if (this.value === '') {
+            this.value = '+380';
+        }
+    });
 
-phoneInput.addEventListener('focus', function() {
-    if (this.value === '') {
-        this.value = '+380';
-    }
-});
+    phoneInput.addEventListener('blur', function () {
+        if (this.value === '+380') {
+            this.value = '';
+        }
+    });
 
-phoneInput.addEventListener('blur', function() {
-    if (this.value === '+380') {
-        this.value = '';
-    }
-});
-
-phoneInput.addEventListener('input', function() {
-    if (!this.value.startsWith('+380')) {
-        this.value = '+380';
-    }
-});
+    phoneInput.addEventListener('input', function () {
+        if (!this.value.startsWith('+380')) {
+            this.value = '+380';
+        }
+    });
+}
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -32,8 +43,8 @@ function showOrderNotification() {
     const toast = document.createElement('div');
     toast.className = 'toast-notification';
     toast.innerHTML = `
-        <span style="color:#8a2be2; font-weight:bold; font-size:18px">(!)</span>
-        <span style="color:#fff; font-size:14px; font-weight:bold">Дані успішно передані!</span>
+        <span class="toast-mark">(!)</span>
+        <span class="toast-msg">Дані успішно передані!</span>
     `;
     document.body.appendChild(toast);
     setTimeout(() => {
@@ -48,11 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.review-card');
     const nextBtn = document.querySelector('.next-arrow');
     const prevBtn = document.querySelector('.prev-arrow');
+    if (!track || !cards.length || !nextBtn || !prevBtn) return;
 
     let currentIndex = 0;
 
     function updateSlider() {
-        const cardWidth = cards[0].offsetWidth + 30; 
+        const gap = parseFloat(getComputedStyle(track).gap) || 30;
+        const cardWidth = cards[0].offsetWidth + gap;
         track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
     }
 
@@ -95,3 +108,59 @@ workflowSteps.forEach(step => {
     step.style.transition = "all 0.6s ease-out";
     workflowObserver.observe(step);
 });
+
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const currentItem = button.parentElement;
+        const isOpen = currentItem.classList.contains('active');
+
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+        });
+
+        if (!isOpen) {
+            currentItem.classList.add('active');
+        }
+    });
+});
+
+/* ── Bento stats counter animation ── */
+(function () {
+    function animateCount(el) {
+        if (el.classList.contains('counted')) return;
+        el.classList.add('counted');
+
+        const target = parseInt(el.dataset.target, 10);
+        const duration = 1200; // Slightly longer for better feel
+        const startTime = performance.now();
+
+        function tick(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.floor(eased * target);
+            if (progress < 1) {
+                requestAnimationFrame(tick);
+            } else {
+                el.textContent = target;
+            }
+        }
+        requestAnimationFrame(tick);
+    }
+
+    const countObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counters = entry.target.querySelectorAll('.bento-count');
+                counters.forEach(animateCount);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    // Observe all bento cards that might have counters
+    document.querySelectorAll('.bento-card').forEach(card => {
+        if (card.querySelector('.bento-count')) {
+            countObserver.observe(card);
+        }
+    });
+})();
