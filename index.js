@@ -88,6 +88,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('resize', updateSlider);
+
+    // Mobile Swipe Support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchStartX - touchEndX > swipeThreshold) {
+            // Swipe Left -> Next
+            nextBtn.click();
+        } else if (touchEndX - touchStartX > swipeThreshold) {
+            // Swipe Right -> Prev
+            prevBtn.click();
+        }
+    }
 });
 
 const workflowSteps = document.querySelectorAll('.workflow-step');

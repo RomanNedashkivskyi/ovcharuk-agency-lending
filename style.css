@@ -732,7 +732,8 @@ body {
 
 /* separator inside order container */
 .order-sep {
-    margin: 20px auto 45px !important; /* Force larger margin */
+    margin: 20px auto 45px !important;
+    /* Force larger margin */
     position: relative;
     display: block;
 }
@@ -740,8 +741,9 @@ body {
 .order-form {
     display: flex;
     flex-direction: column;
-    gap: 20px; 
-    margin-top: 10px; /* Extra buffer */
+    gap: 12px;
+    margin-top: 10px;
+    /* Extra buffer */
     position: relative;
     z-index: 5;
 }
@@ -762,7 +764,7 @@ body {
 
 .input-group {
     position: relative;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .input-group input,
@@ -1157,35 +1159,39 @@ body {
 
 /* Horizontal stack: text left, image right */
 .bento-card--main .bento-card__inner {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    gap: 32px;
+    text-align: center;
+    gap: 24px;
     height: 100%;
 }
 
 .bento-card--main .bento-card__text-block {
-    flex: 1.2;
+    flex: 1;
     padding: 0;
     border: none;
     background: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 /* Image block — right side */
 .bento-card--main .bento-card__img-block {
     flex: 1;
-    max-width: 320px;
+    width: 100%;
+    max-width: 520px;
     position: relative;
     border-radius: 0;
+    margin-bottom: 10px;
 }
 
 .bento-card--main .bento-img {
     width: 100%;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 28px rgba(138,43,226,0.55));
+    filter: drop-shadow(0 0 28px rgba(138, 43, 226, 0.55));
     transition: transform 0.4s ease;
     padding: 0;
 }
@@ -1417,8 +1423,9 @@ body {
 
 /* Tighter title inside main card */
 .bento-card--main .bento-card__title {
-    font-size: clamp(15px, 1.5vw, 20px);
-    margin-bottom: 4px;
+    font-size: clamp(18px, 2.2vw, 26px);
+    margin-bottom: 12px;
+    text-align: center;
 }
 
 .bento-card__text {
@@ -1431,8 +1438,10 @@ body {
 
 /* Tighter text inside main card */
 .bento-card--main .bento-card__text {
-    font-size: 12.5px;
-    line-height: 1.55;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .bento-highlight {
@@ -1444,9 +1453,10 @@ body {
 /* Stats row inside main card */
 .bento-stat-row {
     display: flex;
-    gap: 16px;
-    margin-top: 8px;
+    gap: 24px;
+    margin-top: 20px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .bento-stat {
@@ -1583,8 +1593,13 @@ body {
     text-align: center;
 }
 
-.tariff-list li i.fa-instagram { color: #e1306c; }
-.tariff-list li i.fa-tiktok { color: #fff; }
+.tariff-list li i.fa-instagram {
+    color: #e1306c;
+}
+
+.tariff-list li i.fa-tiktok {
+    color: #fff;
+}
 
 .tariff-views {
     color: #fff;
@@ -1683,25 +1698,29 @@ body {
 
     /* Main card mobile: image 50%, compact text, min-height so stats fit */
     .bento-card--main {
-        min-height: 480px;
+        min-height: 560px;
     }
 
     .bento-card--main .bento-card__img-block {
-        flex: 0 0 50%;
+        flex: 0 0 60%;
     }
 
     .bento-card--main .bento-card__text-block {
-        padding: 12px 18px 16px;
-        gap: 4px;
+        padding: 8px 0;
+        gap: 8px;
+        text-align: center;
+        align-items: center;
     }
 
     .bento-card--main .bento-card__title {
-        font-size: 14px;
+        font-size: 18px;
+        margin-bottom: 10px;
     }
 
     .bento-card--main .bento-card__text {
-        font-size: 12px;
-        line-height: 1.5;
+        font-size: 13px;
+        line-height: 1.6;
+        padding: 0 10px;
     }
 
     .bento-stat__num {
@@ -1896,35 +1915,14 @@ body {
     border-radius: 30px;
 }
 
-.reviews-stage-border {
-    position: absolute;
-    inset: 0;
-    border-radius: 30px;
-    background: linear-gradient(120deg,
-            rgba(167, 139, 250, 0.65) 0%,
-            rgba(34, 211, 238, 0.45) 35%,
-            rgba(124, 58, 237, 0.6) 70%,
-            rgba(192, 132, 252, 0.55) 100%);
-    background-size: 240% 240%;
-    animation: reviewsStageRing 12s ease-in-out infinite;
-    z-index: 0;
-    pointer-events: none;
-    filter: blur(0.6px);
-    box-shadow: 0 0 60px rgba(124, 58, 237, 0.2);
-}
+/* removed border div */
 
 .reviews-stage-inner {
     position: relative;
     z-index: 1;
     border-radius: 28px;
-    padding: 26px 14px 28px;
-    background: linear-gradient(165deg, rgba(12, 8, 28, 0.88) 0%, rgba(4, 4, 14, 0.94) 100%);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    box-shadow:
-        0 28px 90px rgba(0, 0, 0, 0.55),
-        inset 0 1px 0 rgba(255, 255, 255, 0.07),
-        inset 0 -1px 0 rgba(124, 58, 237, 0.06);
+    padding: 26px 0;
+    background: transparent;
 }
 
 .slider-wrapper {
@@ -1953,18 +1951,17 @@ body {
     position: relative;
     min-width: calc((100% - 60px) / 3);
     height: 480px;
-    background: linear-gradient(168deg, rgba(28, 18, 48, 0.75) 0%, rgba(6, 8, 20, 0.95) 55%, rgba(10, 12, 28, 0.92) 100%);
-    border: 1px solid rgba(167, 139, 250, 0.22);
-    border-radius: 22px;
-    padding: 36px 26px 32px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(138, 43, 226, 0.2);
+    border-radius: 24px;
+    padding: 40px 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    box-shadow:
-        0 12px 48px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.04) inset;
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease, box-shadow 0.5s ease;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .review-card::before {
@@ -2077,32 +2074,36 @@ body {
 
 .slider-arrow {
     position: relative;
-    z-index: 2;
+    z-index: 10;
     flex-shrink: 0;
-    width: 52px;
-    height: 52px;
+    width: 64px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
-    border: 1px solid rgba(167, 139, 250, 0.35);
+    border: none;
     border-radius: 50%;
-    background: rgba(10, 8, 24, 0.65);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    color: #e9d5ff;
-    font-size: 28px;
-    line-height: 1;
+    background: transparent;
+    color: #8a2be2;
     cursor: pointer;
-    box-shadow: 0 0 24px rgba(124, 58, 237, 0.18);
-    transition: transform 0.35s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.35s ease;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.slider-arrow svg {
+    width: 48px;
+    height: 48px;
+    filter: drop-shadow(0 0 12px rgba(138, 43, 226, 0.5));
 }
 
 .slider-arrow:hover {
-    color: #fff;
-    border-color: rgba(192, 132, 252, 0.65);
-    transform: scale(1.08);
-    box-shadow: 0 0 32px rgba(167, 139, 250, 0.45);
+    color: #d8b4fe;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.8));
+}
+
+.slider-arrow:active {
+    transform: scale(0.9);
 }
 
 .extra-spacing {
@@ -2134,7 +2135,7 @@ body {
 
 .workflow-lead {
     font-size: 16px;
-    color: rgba(210,210,228,0.78);
+    color: rgba(210, 210, 228, 0.78);
     max-width: 600px;
     margin: 0;
     line-height: 1.6;
@@ -2335,7 +2336,8 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0; /* gaps handled by pseudo-line */
+        gap: 0;
+        /* gaps handled by pseudo-line */
         position: relative;
         padding: 0 20px;
     }
@@ -2355,15 +2357,13 @@ body {
         bottom: 0;
         width: 2px;
         transform: translateX(-50%);
-        background: linear-gradient(
-            180deg,
-            transparent 0%,
-            rgba(138,43,226,0.6) 8%,
-            rgba(167,139,250,0.8) 50%,
-            rgba(34,211,238,0.6) 92%,
-            transparent 100%
-        );
-        box-shadow: 0 0 12px rgba(138,43,226,0.55), 0 0 24px rgba(34,211,238,0.25);
+        background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(138, 43, 226, 0.6) 8%,
+                rgba(167, 139, 250, 0.8) 50%,
+                rgba(34, 211, 238, 0.6) 92%,
+                transparent 100%);
+        box-shadow: 0 0 12px rgba(138, 43, 226, 0.55), 0 0 24px rgba(34, 211, 238, 0.25);
         z-index: 0;
         border-radius: 2px;
     }
@@ -2388,7 +2388,7 @@ body {
         height: 32px;
         border-radius: 50%;
         background: linear-gradient(135deg, #8a2be2, #22d3ee);
-        box-shadow: 0 0 16px rgba(138,43,226,0.7), 0 0 28px rgba(34,211,238,0.35);
+        box-shadow: 0 0 16px rgba(138, 43, 226, 0.7), 0 0 28px rgba(34, 211, 238, 0.35);
         display: flex;
         align-items: center;
         justify-content: center;

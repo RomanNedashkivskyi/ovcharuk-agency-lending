@@ -92,8 +92,7 @@
         <div class="order-bg-overlay" style="background-image: url('img/Gemini_Generated_Image_5bz5es5bz5es5bz5.png');"></div>
         <div class="order-container">
             <span class="bento-eyebrow order-eyebrow"><i class="fas fa-paper-plane"></i> Залишити заявку</span>
-            <h2 class="order-title">Замовити <span class="bento-title-accent">послугу</span> агенції 
-            </h2>
+            <h2 class="order-title">Замовити <span class="bento-title-accent">послугу</span> агенції </h2>
             <div class="bento-title-line order-sep"></div>
             <form class="order-form" onsubmit="event.preventDefault(); showOrderNotification();">
                 <div class="input-group">
@@ -322,10 +321,13 @@
         <div class="central-separator review-sep"></div>
 
         <div class="reviews-stage">
-        <div class="reviews-stage-border" aria-hidden="true"></div>
         <div class="reviews-stage-inner">
         <div class="slider-wrapper">
-            <button type="button" class="slider-arrow prev-arrow" aria-label="Попередні відгуки">&#10094;</button>
+            <button type="button" class="slider-arrow prev-arrow" aria-label="Попередні відгуки">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 19L8 12L15 5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
             
             <div class="reviews-slider">
                 <div class="reviews-track">
@@ -386,7 +388,11 @@
                 </div>
             </div>
 
-            <button type="button" class="slider-arrow next-arrow" aria-label="Наступні відгуки">&#10095;</button>
+            <button type="button" class="slider-arrow next-arrow" aria-label="Наступні відгуки">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
         </div>
         </div>
         </div>
