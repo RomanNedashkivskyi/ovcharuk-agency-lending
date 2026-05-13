@@ -1696,42 +1696,59 @@ body {
         grid-row: span 1;
     }
 
-    /* Main card mobile: image 50%, compact text, min-height so stats fit */
+    /* Main card mobile: image auto height, compact text, no fixed min-height */
     .bento-card--main {
-        min-height: 560px;
+        min-height: auto;
+        padding: 32px 20px;
+    }
+
+    .bento-card--main .bento-card__inner {
+        gap: 16px;
     }
 
     .bento-card--main .bento-card__img-block {
-        flex: 0 0 60%;
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 280px;
+        margin-bottom: 0;
+    }
+
+    .bento-card--main .bento-img {
+        max-width: 100%;
     }
 
     .bento-card--main .bento-card__text-block {
-        padding: 8px 0;
-        gap: 8px;
+        padding: 0;
+        gap: 12px;
         text-align: center;
         align-items: center;
     }
 
     .bento-card--main .bento-card__title {
-        font-size: 18px;
-        margin-bottom: 10px;
+        font-size: 19px;
+        margin-bottom: 8px;
     }
 
     .bento-card--main .bento-card__text {
-        font-size: 13px;
-        line-height: 1.6;
-        padding: 0 10px;
+        font-size: 13.5px;
+        line-height: 1.55;
+        padding: 0;
+        margin-bottom: 12px;
     }
 
     .bento-stat__num {
-        font-size: 22px;
+        font-size: 24px;
+    }
+
+    .bento-stat__label {
+        font-size: 10px;
     }
 
     /* Small cards — touch-friendly padding */
     .bento-card--sm {
         padding: 24px 20px;
         gap: 10px;
-        min-height: 200px;
+        min-height: auto;
     }
 
     /* Viral card mobile */
@@ -1754,8 +1771,11 @@ body {
     }
 
     .bento-stat-row {
-        gap: 12px;
-        margin-top: 6px;
+        gap: 16px;
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
     }
 }
 
@@ -2788,6 +2808,353 @@ body {
 .faq-item.active .faq-answer-inner {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Блок завантаження файлу */
+.download-section {
+    position: relative;
+    padding: 120px 20px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    background: #020206;
+}
+
+.download-section-overlay {
+    position: absolute;
+    inset: 0;
+    background: url('img/downloadfile98.png') center/cover no-repeat;
+    filter: blur(15px) brightness(0.3);
+    opacity: 0.6;
+    z-index: 0;
+    transform: scale(1.1);
+}
+
+.download-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.15), transparent 70%);
+    z-index: 1;
+}
+
+.download-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    padding: 80px 40px;
+    text-align: center;
+    z-index: 2;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(124, 58, 237, 0.15);
+}
+
+.download-content {
+    position: relative;
+    z-index: 2;
+}
+
+.download-title {
+    font-size: clamp(24px, 4vw, 38px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #f4f4f8;
+    margin: 15px 0 12px;
+    line-height: 1.1;
+}
+
+.download-subtitle {
+    font-size: 16px;
+    color: rgba(210, 210, 228, 0.85);
+    max-width: 600px;
+    margin: 0 auto 20px;
+    line-height: 1.6;
+}
+
+.download-sep {
+    margin: 30px auto 40px !important;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 22px 48px;
+    background: linear-gradient(128deg, #7c3aed 0%, #8b5cf6 28%, #2563eb 62%, #06b6d4 100%);
+    background-size: 200% 200%;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 12px;
+    /* Slightly rectangular */
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.35);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, filter 0.4s ease;
+}
+
+.download-btn:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 15px 45px rgba(124, 58, 237, 0.5), 0 0 30px rgba(34, 211, 238, 0.3);
+    filter: brightness(1.1);
+}
+
+.download-btn i {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.download-btn:hover i {
+    transform: translateY(3px);
+}
+
+/* Адаптив для мобілок */
+@media (max-width: 768px) {
+    .download-section {
+        padding: 80px 16px;
+    }
+
+    .download-container {
+        padding: 60px 24px;
+        border-radius: 20px;
+    }
+
+    .download-title {
+        font-size: 22px;
+    }
+
+    .download-subtitle {
+        font-size: 14px;
+    }
+
+    .download-btn {
+        padding: 18px 32px;
+        font-size: 13px;
+        width: 100%;
+    }
+}
+
+/* Bento Cases Section */
+.cases-section {
+    padding: 100px 20px;
+}
+
+.cases-bento {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 50px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* =============================================
+   CASES SECTION
+   ============================================= */
+.cases-section {
+    position: relative;
+    padding: 110px 0 80px;
+    background: radial-gradient(ellipse 70% 55% at 8% 20%, rgba(138, 43, 226, 0.15) 0%, transparent 55%),
+                radial-gradient(ellipse 60% 50% at 92% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                linear-gradient(160deg, #050505 0%, #080312 100%);
+    overflow: hidden;
+}
+
+.cases-bento {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    padding: 0 20px;
+}
+
+.case-row {
+    display: grid;
+    grid-template-columns: 2fr 1.1fr;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.case-row.reverse {
+    grid-template-columns: 1.1fr 2fr;
+}
+
+.case-visual {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 320px;
+}
+
+.case-header {
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.case-title {
+    font-size: clamp(18px, 2.2vw, 28px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-top: 10px;
+    color: #fff;
+}
+
+.case-img-wrapper {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.case-img {
+    width: 100%;
+    height: auto;
+    max-height: 320px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 30px rgba(138, 43, 226, 0.4));
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bento-card:hover .case-img {
+    transform: scale(1.04) translateY(-3px);
+}
+
+.case-info {
+    justify-content: center;
+    padding: 32px;
+}
+
+.info-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.info-icon {
+    font-size: 24px;
+    background: linear-gradient(135deg, #c084fc, #22d3ee);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 8px rgba(192, 132, 252, 0.4));
+}
+
+.info-content h4 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #8a2be2;
+    font-weight: 800;
+}
+
+.case-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(226, 232, 240, 0.8);
+    margin-bottom: 25px;
+    max-width: 100%;
+}
+
+.case-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: auto;
+}
+
+.case-stats-grid .bento-stat {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 16px 10px;
+    border-radius: 16px;
+    border: 1px solid rgba(138, 43, 226, 0.12);
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.case-stats-grid .bento-stat:hover {
+    background: rgba(138, 43, 226, 0.06);
+    border-color: rgba(138, 43, 226, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Light theme overrides for cases */
+html[data-theme="light"] .cases-section {
+    background: radial-gradient(circle at 20% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 45%),
+                radial-gradient(circle at 80% 75%, rgba(6, 182, 212, 0.08) 0%, transparent 48%),
+                linear-gradient(160deg, #ffffff 0%, #f8fafc 100%);
+}
+
+html[data-theme="light"] .case-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .case-desc {
+    color: #334155;
+}
+
+html[data-theme="light"] .case-stats-grid .bento-stat {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(138, 43, 226, 0.18);
+}
+
+html[data-theme="light"] .case-stats-grid .bento-stat:hover {
+    background: #fff;
+    border-color: #8a2be2;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .case-row, .case-row.reverse {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .case-visual {
+        min-height: 380px;
+    }
+    
+    .case-row.reverse .case-info {
+        order: 2;
+    }
+    
+    .case-row.reverse .case-visual {
+        order: 1;
+    }
+}
+
+@media (max-width: 580px) {
+    .case-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .case-visual {
+        padding: 24px 20px;
+        min-height: 320px;
+    }
+    
+    .case-info {
+        padding: 28px 20px;
+    }
 }
 
 /* ========== Світла тема (перемикач у hero) ========== */
