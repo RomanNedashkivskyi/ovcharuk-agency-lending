@@ -181,10 +181,217 @@ document.querySelectorAll('.faq-question').forEach(button => {
         });
     }, { threshold: 0.2 });
 
-    // Observe all bento cards that might have counters
-    document.querySelectorAll('.bento-card').forEach(card => {
-        if (card.querySelector('.bento-count')) {
-            countObserver.observe(card);
+    // Observe all cards and results sections that might have counters
+    document.querySelectorAll('.bento-card, .case-results').forEach(el => {
+        if (el.querySelector('.bento-count')) {
+            countObserver.observe(el);
         }
     });
 })();
+
+/* === TELEGRAM SETTINGS === */
+// Токен та Chat ID перенесені на бекенд для безпеки, щоб їх неможливо було вкрасти з браузера!
+async function sendToTelegram(message) {
+    const url = `http://127.0.0.1:5050/api/send-lead`;
+
+    const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+    });
+
+    if (!response.ok) {
+        throw new Error("Не вдалося відправити лід через сервер.");
+    }
+    return response.json();
+}
+
+/* === FORM HANDLER === */
+document.querySelector(".order-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const inputs = document.querySelectorAll(".order-form input");
+    const service = document.querySelector(".order-form select").value;
+
+    const fullName = inputs[0].value.trim();
+    const phone = inputs[1].value.trim();
+    const instagram = inputs[2].value.trim();
+
+    const msg =
+        `📩 <b>Нова заявка з сайту</b>\n\n` +
+        `👤 Ім'я: ${fullName}\n` +
+        `📞 Телефон: ${phone}\n` +
+        `📸 Instagram: ${instagram}\n` +
+        `🛠 Послуга: ${service}\n\n` +
+        `🌐 Джерело: сайт агенції`;
+
+    try {
+        await sendToTelegram(msg);
+        showOrderNotification();
+    } catch (err) {
+        console.error("Помилка Telegram:", err);
+        alert("Помилка відправки. Спробуйте пізніше.");
+    }
+});
+
+/* ========================================================
+   === ШІ ЧАТ-БОТ (ПІДКЛЮЧЕННЯ ДО БЕКЕНДУ) ===
+   ======================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+    const chatToggleBtn = document.getElementById("chat-toggle-btn");
+    const openChatServiceBtn = document.getElementById("open-ai-chat-service");
+    const closeChatBtn = document.getElementById("close-chat");
+    const chatWindow = document.getElementById("ai-chat-window");
+    const chatOverlay = document.getElementById("chat-overlay");
+    const chatMessages = document.getElementById("chat-messages");
+    const chatUserInput = document.getElementById("chat-user-input");
+    const sendChatBtn = document.getElementById("send-chat-btn");
+
+    if (!chatWindow || !chatMessages || !chatUserInput) return;
+
+    let chatHistory = []; // Історія для Gemini API (формат: { role, parts: [{ text }] })
+
+    // Відкрити чат
+    function openChat(e) {
+        if (e) e.preventDefault();
+        chatWindow.classList.remove("hidden");
+        chatOverlay.classList.remove("hidden");
+        chatUserInput.focus();
+        scrollToBottom();
+    }
+
+    // Закрити чат
+    function closeChat() {
+        chatWindow.classList.add("hidden");
+        chatOverlay.classList.add("hidden");
+    }
+
+    if (chatToggleBtn) chatToggleBtn.addEventListener("click", openChat);
+    if (openChatServiceBtn) openChatServiceBtn.addEventListener("click", openChat);
+    if (closeChatBtn) closeChatBtn.addEventListener("click", closeChat);
+    if (chatOverlay) chatOverlay.addEventListener("click", closeChat);
+
+    // Прокрутка до кінця
+    function scrollToBottom() {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Створення HTML повідомлення
+    function appendMessage(sender, text, isUser = false) {
+        const msgGroup = document.createElement("div");
+        msgGroup.className = `msg-group ${isUser ? "user-group" : "bot-group"}`;
+
+        const senderLabel = document.createElement("span");
+        senderLabel.className = "msg-sender";
+        senderLabel.textContent = sender;
+
+        const msgDiv = document.createElement("div");
+        msgDiv.className = `msg ${isUser ? "user-msg" : "bot-msg"}`;
+        msgDiv.textContent = text;
+
+        msgGroup.appendChild(senderLabel);
+        msgGroup.appendChild(msgDiv);
+        chatMessages.appendChild(msgGroup);
+
+        scrollToBottom();
+    }
+
+    // Додавання індикатора набору тексту
+    function showTypingIndicator() {
+        const typingGroup = document.createElement("div");
+        typingGroup.className = "msg-group bot-group typing-indicator-group";
+        typingGroup.id = "chat-typing-indicator";
+
+        const senderLabel = document.createElement("span");
+        senderLabel.className = "msg-sender";
+        senderLabel.textContent = "ШІ Асистент";
+
+        const msgDiv = document.createElement("div");
+        msgDiv.className = "msg bot-msg typing-msg";
+        msgDiv.innerHTML = `
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+        `;
+
+        typingGroup.appendChild(senderLabel);
+        typingGroup.appendChild(msgDiv);
+        chatMessages.appendChild(typingGroup);
+        scrollToBottom();
+    }
+
+    // Видалення індикатора набору тексту
+    function removeTypingIndicator() {
+        const indicator = document.getElementById("chat-typing-indicator");
+        if (indicator) {
+            indicator.remove();
+        }
+    }
+
+    // Відправка повідомлення
+    async function handleSendMessage() {
+        const messageText = chatUserInput.value.trim();
+        if (!messageText) return;
+
+        // 1. Додаємо повідомлення користувача на екран
+        appendMessage("Ви", messageText, true);
+        chatUserInput.value = "";
+
+        // 2. Показуємо анімацію "ШІ пише..."
+        showTypingIndicator();
+
+        try {
+            // 3. Відправляємо запит на бекенд
+            const response = await fetch("http://127.0.0.1:5050/api/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    message: messageText,
+                    history: chatHistory
+                })
+            });
+
+            const data = await response.json();
+            removeTypingIndicator();
+
+            if (response.ok && data.reply) {
+                // 4. Додаємо відповідь ШІ на екран
+                appendMessage("ШІ Асистент", data.reply, false);
+
+                // 5. Оновлюємо історію діалогу для наступних запитів
+                chatHistory.push({ role: "user", parts: [{ text: messageText }] });
+                chatHistory.push({ role: "model", parts: [{ text: data.reply }] });
+            } else {
+                // Граціозний вивід помилки від API
+                appendMessage(
+                    "ШІ Асистент",
+                    "Вибачте, виникла помилка при обробці запиту ШІ. Спробуйте пізніше або перевірте налаштування API. ⚙️",
+                    false
+                );
+            }
+        } catch (error) {
+            console.error("Помилка зв'язку з сервером чату:", error);
+            removeTypingIndicator();
+            appendMessage(
+                "ШІ Асистент",
+                "Не вдалося з'єднатися з сервером ШІ. Переконайтеся, що бекенд запущено на порту 5050. 🔌",
+                false
+            );
+        }
+    }
+
+    // Слухачі подій для відправки
+    if (sendChatBtn) {
+        sendChatBtn.addEventListener("click", handleSendMessage);
+    }
+
+    if (chatUserInput) {
+        chatUserInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                handleSendMessage();
+            }
+        });
+    }
+});

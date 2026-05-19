@@ -1126,6 +1126,10 @@ body {
     background: radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, transparent 70%);
 }
 
+.bento-card__glow--fire {
+    background: radial-gradient(circle, rgba(248, 113, 113, 0.3) 0%, transparent 70%);
+}
+
 .bento-card__glow--wide {
     width: 350px;
     height: 350px;
@@ -2810,130 +2814,138 @@ body {
     transform: translateY(0);
 }
 
-/* Блок завантаження файлу */
+/* New Download Section Styles - 4 cards grid */
 .download-section {
     position: relative;
-    padding: 120px 20px;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
+    padding: 100px 0;
     background: #020206;
+    overflow: hidden;
+}
+
+.section-subtitle {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 600px;
+    margin: 0 auto 25px; /* Added margin to fix line overlap */
+    line-height: 1.6;
+    text-align: center;
 }
 
 .download-section-overlay {
     position: absolute;
     inset: 0;
-    background: url('img/downloadfile98.png') center/cover no-repeat;
-    filter: blur(15px) brightness(0.3);
-    opacity: 0.6;
-    z-index: 0;
-    transform: scale(1.1);
+    background: 
+        radial-gradient(circle at 15% 15%, rgba(138, 43, 226, 0.12), transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(34, 211, 238, 0.08), transparent 40%);
+    pointer-events: none;
 }
 
-.download-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.15), transparent 70%);
-    z-index: 1;
+.download-grid {
+    max-width: 1200px;
+    margin: 50px auto 0;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
 }
 
-.download-container {
+.download-card {
+    padding: 40px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Centered */
+    text-align: center; /* Centered */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(138, 43, 226, 0.15);
+    border-radius: 24px;
+}
+
+.download-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(138, 43, 226, 0.4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(138, 43, 226, 0.2);
+}
+
+.download-card-content {
     position: relative;
-    width: 100%;
-    max-width: 1000px;
-    padding: 80px 40px;
-    text-align: center;
     z-index: 2;
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(124, 58, 237, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centered content */
+    gap: 15px;
 }
 
-.download-content {
-    position: relative;
-    z-index: 2;
-}
-
-.download-title {
-    font-size: clamp(24px, 4vw, 38px);
+.download-card-title {
+    font-size: 24px;
     font-weight: 900;
+    background: linear-gradient(118deg, #fff 0%, #c084fc 50%, #8a2be2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.3;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: #f4f4f8;
-    margin: 15px 0 12px;
-    line-height: 1.1;
 }
 
-.download-subtitle {
-    font-size: 16px;
-    color: rgba(210, 210, 228, 0.85);
-    max-width: 600px;
-    margin: 0 auto 20px;
+.download-card-desc {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
     line-height: 1.6;
 }
 
-.download-sep {
-    margin: 30px auto 40px !important;
-}
-
-.download-btn {
+.download-card-btn {
+    margin-top: 15px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     gap: 12px;
-    padding: 22px 48px;
-    background: linear-gradient(128deg, #7c3aed 0%, #8b5cf6 28%, #2563eb 62%, #06b6d4 100%);
-    background-size: 200% 200%;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #8a2be2 0%, #4b0082 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
     color: #fff;
     text-decoration: none;
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: 0.12em;
+    font-weight: 800;
+    font-size: 14px;
     text-transform: uppercase;
-    border-radius: 12px;
-    /* Slightly rectangular */
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.35);
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, filter 0.4s ease;
+    letter-spacing: 1.5px;
+    width: fit-content;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
 }
 
-.download-btn:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 15px 45px rgba(124, 58, 237, 0.5), 0 0 30px rgba(34, 211, 238, 0.3);
-    filter: brightness(1.1);
+.download-card-btn:hover {
+    background: linear-gradient(135deg, #9d50bb 0%, #6e48aa 100%);
+    transform: translateY(-5px) scale(1.05);
+    border-color: #fff;
+    box-shadow: 0 0 25px rgba(138, 43, 226, 0.8), 0 0 45px rgba(34, 211, 238, 0.3);
 }
 
-.download-btn i {
-    font-size: 18px;
+.download-card-btn i {
+    font-size: 16px;
     transition: transform 0.3s ease;
 }
 
-.download-btn:hover i {
+.download-card-btn:hover i {
     transform: translateY(3px);
 }
 
-/* Адаптив для мобілок */
-@media (max-width: 768px) {
-    .download-section {
-        padding: 80px 16px;
+/* Responsive Download Section */
+@media (max-width: 992px) {
+    .download-grid {
+        grid-template-columns: 1fr;
+        max-width: 600px;
     }
+}
 
-    .download-container {
-        padding: 60px 24px;
-        border-radius: 20px;
+@media (max-width: 480px) {
+    .download-card {
+        padding: 30px 20px;
     }
-
-    .download-title {
-        font-size: 22px;
-    }
-
-    .download-subtitle {
-        font-size: 14px;
-    }
-
-    .download-btn {
-        padding: 18px 32px;
-        font-size: 13px;
-        width: 100%;
+    
+    .download-card-title {
+        font-size: 18px;
     }
 }
 
@@ -2977,13 +2989,14 @@ body {
 
 .case-row {
     display: grid;
-    grid-template-columns: 2fr 1.1fr;
+    grid-template-columns: 1.2fr 1fr;
     gap: 24px;
     align-items: stretch;
+    margin-bottom: 20px;
 }
 
 .case-row.reverse {
-    grid-template-columns: 1.1fr 2fr;
+    grid-template-columns: 1fr 1.2fr;
 }
 
 .case-visual {
@@ -3031,6 +3044,143 @@ body {
 
 .bento-card:hover .case-img {
     transform: scale(1.04) translateY(-3px);
+}
+
+/* Extra info in visual block */
+.case-extra-info {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.case-extra-item {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.case-extra-item::before {
+    content: "•";
+    color: #8a2be2;
+    font-weight: bold;
+}
+
+/* Info Grid (4 blocks) */
+.case-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.case-info-mini {
+    padding: 20px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: auto !important;
+}
+
+.info-header-mini {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mini-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #c084fc;
+    font-weight: 800;
+}
+
+.mini-label.accent-pink {
+    color: #ff00ff; /* Magenta/Pink from screenshot */
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
+}
+
+.mini-label.accent-cyan {
+    color: #00ffff; /* Cyan from screenshot */
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+.mini-desc {
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: rgba(226, 232, 240, 0.85);
+    margin: 0;
+}
+
+/* Results section */
+.case-results {
+    margin-top: 24px;
+    margin-bottom: 60px;
+    padding: 24px 32px;
+    background: rgba(138, 43, 226, 0.05);
+    border: 1px solid rgba(138, 43, 226, 0.2);
+    border-radius: 24px;
+    backdrop-filter: blur(10px);
+}
+
+.results-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.results-title {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 900;
+    color: #fff;
+    margin: 0;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.result-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.result-num {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    text-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+}
+
+.result-label {
+    font-size: 12px;
+    color: rgba(216, 180, 254, 0.7);
+    line-height: 1.4;
+}
+
+.result-footer-text {
+    grid-column: 1 / -1;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(138, 43, 226, 0.15);
+}
+
+/* Ensure long numbers don't break layout */
+.result-num {
+    word-break: break-word;
 }
 
 .case-info {
@@ -3130,31 +3280,406 @@ html[data-theme="light"] .case-stats-grid .bento-stat:hover {
     }
     
     .case-visual {
-        min-height: 380px;
+        min-height: auto;
     }
     
-    .case-row.reverse .case-info {
+    .case-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .case-row.reverse .case-info-grid {
         order: 2;
     }
     
     .case-row.reverse .case-visual {
         order: 1;
     }
+
+    .results-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop-only spacing for cases */
+@media (min-width: 993px) {
+    .case-row {
+        margin-bottom: 0px;
+    }
+    .case-results {
+        margin-top: 6px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .result-num {
+        font-size: 24px;
+    }
 }
 
 @media (max-width: 580px) {
-    .case-stats-grid {
+    .case-info-grid {
         grid-template-columns: 1fr;
     }
     
     .case-visual {
         padding: 24px 20px;
-        min-height: 320px;
     }
     
-    .case-info {
-        padding: 28px 20px;
+    .case-results {
+        padding: 20px;
     }
+}
+
+/* --- НЕОНОВИЙ ШІ ЧАТ --- */
+
+/* Кругла фіксована кнопка */
+.chat-trigger-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8a2be2, #4b0082);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.2);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Ховер анімація для кнопки */
+.chat-trigger-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 0 35px rgba(138, 43, 226, 0.9), 0 0 10px #fff;
+    background: linear-gradient(135deg, #a036ff, #5c00a3);
+}
+
+/* Задній фон з розмиттям (Блюр ефект) */
+.chat-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 5, 10, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9998;
+    transition: opacity 0.4s ease;
+}
+
+/* Вікно чату */
+.chat-window {
+    position: fixed;
+    bottom: 110px;
+    right: 30px;
+    width: 380px;
+    height: 520px;
+    background: rgba(13, 13, 25, 0.85);
+    border: 1px solid rgba(138, 43, 226, 0.4);
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(138, 43, 226, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 9999;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transform-origin: bottom right;
+}
+
+/* Клас для приховування з плавною анімацією */
+.chat-window.hidden, .chat-backdrop.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8) translateY(30px);
+}
+
+/* Шапка чату */
+.chat-header {
+    position: relative;
+    background: rgba(13, 13, 25, 0.98);
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: none;
+}
+
+.chat-header-glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 100%;
+    background: radial-gradient(circle at top, rgba(138, 43, 226, 0.15), transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.chat-bot-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    z-index: 2;
+}
+
+.bot-avatar-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: rgba(138, 43, 226, 0.12);
+    border: 1px solid rgba(138, 43, 226, 0.35);
+    border-radius: 50%;
+    color: #00ffcc;
+    font-size: 16px;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.2);
+}
+
+.bot-icon-glow {
+    filter: drop-shadow(0 0 5px #00ffcc);
+}
+
+.online-pulse {
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 10px;
+    height: 10px;
+    background: #00ffcc;
+    border: 2px solid rgba(13, 13, 25, 1);
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ffcc;
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.chat-title-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-title-gradient {
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    margin: 0 !important;
+    background: linear-gradient(118deg, #fff 0%, #c084fc 50%, #00ffcc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 0.5px;
+}
+
+.chat-subtitle {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 1px;
+}
+
+.close-chat-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    z-index: 2;
+}
+.close-chat-btn:hover {
+    color: #ff4a4a;
+    transform: rotate(90deg);
+}
+
+.chat-header-neon-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #8a2be2, #00ffcc, transparent);
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.5), 0 0 15px rgba(0, 255, 204, 0.3);
+}
+
+/* Зона повідомлень */
+.chat-messages-container {
+    flex: 1;
+    padding: 24px 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: radial-gradient(circle at center, rgba(138, 43, 226, 0.02) 0%, transparent 80%);
+}
+
+.msg-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-width: 85%;
+    animation: fadeInMsg 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.bot-group {
+    align-self: flex-start;
+}
+
+.user-group {
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.msg-sender {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.bot-group .msg-sender {
+    color: #00ffcc;
+    text-shadow: 0 0 8px rgba(0, 255, 204, 0.2);
+}
+
+.user-group .msg-sender {
+    color: #c084fc;
+    text-shadow: 0 0 8px rgba(192, 132, 252, 0.2);
+}
+
+.msg {
+    padding: 12px 18px;
+    border-radius: 16px;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    word-wrap: break-word;
+}
+
+@keyframes fadeInMsg {
+    from { opacity: 0; transform: translateY(12px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.bot-msg {
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom-left-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.user-msg {
+    background: linear-gradient(135deg, #8a2be2, #4b0082);
+    color: white;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Анімований Typing Indicator */
+.typing-msg {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 14px 20px;
+    width: 62px;
+}
+
+.typing-dot {
+    width: 6px;
+    height: 6px;
+    background: rgba(0, 255, 204, 0.8);
+    border-radius: 50%;
+    animation: typingBounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typingBounce {
+    0%, 80%, 100% { transform: scale(0.4); opacity: 0.4; }
+    40% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Поле введення */
+.chat-input-area {
+    padding: 15px 20px;
+    display: flex;
+    gap: 10px;
+    background: rgba(5, 5, 10, 0.4);
+    border-top: 1px solid rgba(138, 43, 226, 0.15);
+}
+
+.chat-input-area input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(138, 43, 226, 0.2);
+    padding: 12px 16px;
+    border-radius: 14px;
+    color: white;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.chat-input-area input:focus {
+    border-color: #8a2be2;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.2);
+}
+
+.chat-input-area button {
+    background: #8a2be2;
+    border: none;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.chat-input-area button:hover {
+    background: #a036ff;
+    transform: scale(1.05);
+}
+
+/* Адаптив під мобілки */
+@media (max-width: 480px) {
+    .chat-window {
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+    .chat-trigger-btn { bottom: 20px; right: 20px; }
 }
 
 /* ========== Світла тема (перемикач у hero) ========== */
@@ -3535,6 +4060,200 @@ html[data-theme="light"] .slider-arrow:hover {
     color: #0f172a;
 }
 
+/* Review Button Styles */
+.review-btn {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 16px 36px;
+    background: linear-gradient(135deg, #8a2be2 0%, #4b0082 100%);
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 12px;
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.4), 
+                0 0 30px rgba(138, 43, 226, 0.2);
+}
+
+.review-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: 0.6s;
+    z-index: -1;
+}
+
+.review-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 0 25px rgba(138, 43, 226, 0.8), 
+                0 0 50px rgba(138, 43, 226, 0.4),
+                inset 0 0 15px rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    filter: brightness(1.15);
+}
+
+.review-btn:hover::before {
+    left: 100%;
+}
+
+.review-btn:active {
+    transform: translateY(-2px);
+}
+
+/* Light theme for review button */
+html[data-theme="light"] .review-btn {
+    background: linear-gradient(135deg, #8a2be2 0%, #a855f7 100%);
+    box-shadow: 0 8px 25px rgba(138, 43, 226, 0.3), 0 0 15px rgba(138, 43, 226, 0.2);
+}
+
+html[data-theme="light"] .review-btn:hover {
+    box-shadow: 0 12px 35px rgba(138, 43, 226, 0.5), 0 0 25px rgba(138, 43, 226, 0.3);
+}
+
+/* Footer Section */
+.main-footer {
+    padding: 80px 0 40px;
+    background: linear-gradient(180deg, #050505 0%, #020206 100%);
+    border-top: 1px solid rgba(138, 43, 226, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.main-footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #8a2be2, transparent);
+    opacity: 0.5;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #8a2be2;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #fff;
+    transform: translateX(5px);
+    text-shadow: 0 0 8px rgba(138, 43, 226, 0.4);
+}
+
+.footer-v-line {
+    width: 1px;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, rgba(138, 43, 226, 0.3), transparent);
+    align-self: center;
+}
+
+.footer-insta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    border-radius: 12px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.footer-insta-btn:hover {
+    background: rgba(138, 43, 226, 0.15);
+    border-color: #8a2be2;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(138, 43, 226, 0.3);
+}
+
+.footer-insta-btn i {
+    font-size: 20px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer-bottom {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 1px;
+}
+
+/* Footer Mobile */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 50px;
+    }
+    
+    .footer-v-line {
+        display: none;
+    }
+    
+    .footer-link:hover {
+        transform: scale(1.1);
+    }
+}
+
 html[data-theme="light"] .workflow-section {
     background: radial-gradient(circle at 18% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 40%),
         radial-gradient(circle at 82% 75%, rgba(34, 211, 238, 0.08) 0%, transparent 45%),
@@ -3609,3 +4328,4 @@ html[data-theme="light"] .input-group textarea::placeholder {
         transition-duration: 0.01ms !important;
     }
 }
+
