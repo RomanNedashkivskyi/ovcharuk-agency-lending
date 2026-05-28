@@ -8,6 +8,83 @@
     setScrolled();
 })();
 
+/* === Back to top button === */
+(function () {
+    const btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    const toggle = () => {
+        btn.classList.toggle('is-visible', window.scrollY > 600);
+    };
+    window.addEventListener('scroll', toggle, { passive: true });
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    toggle();
+})();
+
+/* === Mobile navigation (hamburger dropdown) === */
+(function () {
+    const header = document.querySelector('.main-header');
+    const toggle = header && header.querySelector('.mobile-toggle');
+    const nav = header && header.querySelector('.nav-menu');
+    if (!header || !toggle || !nav) return;
+
+    function closeNav() { header.classList.remove('nav-open'); }
+
+    toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        header.classList.toggle('nav-open');
+    });
+
+    // Close when a link is tapped
+    nav.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', closeNav);
+    });
+
+    // Close when tapping outside the header
+    document.addEventListener('click', (e) => {
+        if (header.classList.contains('nav-open') && !header.contains(e.target)) {
+            closeNav();
+        }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeNav();
+    });
+})();
+
+/* === Theme toggle (light / dark) === */
+(function () {
+    const STORAGE_KEY = 'oa-theme';
+    const root = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+
+    function applyTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        btn.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
+        btn.title = theme === 'light'
+            ? 'Перемкнути на темну тему'
+            : 'Перемкнути на світлу тему';
+    }
+
+    let saved = null;
+    try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) { /* noop */ }
+    applyTheme(saved === 'light' || saved === 'dark' ? saved : (root.getAttribute('data-theme') || 'dark'));
+
+    btn.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        root.classList.add('theme-switching');
+        applyTheme(next);
+        try { localStorage.setItem(STORAGE_KEY, next); } catch (e) { /* noop */ }
+        window.clearTimeout(btn._themeT);
+        btn._themeT = window.setTimeout(() => {
+            root.classList.remove('theme-switching');
+        }, 500);
+    });
+})();
+
 const phoneInput = document.getElementById('phone-input');
 if (phoneInput) {
     phoneInput.addEventListener('focus', function () {
@@ -182,7 +259,7 @@ document.querySelectorAll('.faq-question').forEach(button => {
     }, { threshold: 0.2 });
 
     // Observe all cards and results sections that might have counters
-    document.querySelectorAll('.bento-card, .case-results').forEach(el => {
+    document.querySelectorAll('.bento-card, .case-results, .pricing-card').forEach(el => {
         if (el.querySelector('.bento-count')) {
             countObserver.observe(el);
         }
@@ -392,6 +469,18 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.key === "Enter") {
                 handleSendMessage();
             }
+        });
+    }
+
+    // Quick-reply chips — prefill and send
+    const quickReplies = document.getElementById("chat-quick-replies");
+    if (quickReplies) {
+        quickReplies.querySelectorAll(".chat-quick-chip").forEach((chip) => {
+            chip.addEventListener("click", () => {
+                chatUserInput.value = chip.dataset.msg || chip.textContent.trim();
+                handleSendMessage();
+                quickReplies.classList.add("is-hidden");
+            });
         });
     }
 });

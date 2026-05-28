@@ -2,6 +2,16 @@
 <html lang="uk" data-theme="dark">
 <head>
     <meta charset="UTF-8">
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('oa-theme');
+                if (saved === 'light' || saved === 'dark') {
+                    document.documentElement.setAttribute('data-theme', saved);
+                }
+            } catch (e) { /* localStorage unavailable */ }
+        })();
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="style.css" rel="stylesheet"/>
@@ -10,6 +20,10 @@
     <link rel="icon" type="image/png" href="img/5752224.png">
 </head>
 <body>
+    <!-- Ambient Background Glowing Orbs -->
+    <div class="ambient-orb ambient-orb--purple" aria-hidden="true"></div>
+    <div class="ambient-orb ambient-orb--cyan" aria-hidden="true"></div>
+
     <header class="main-header">
         <div class="header-container">
             <div class="logo-container"></div>
@@ -17,11 +31,12 @@
             <nav class="nav-menu">
                 <a href="#about" class="nav-link">Про нас</a>
                 <a href="#services" class="nav-link">Послуги</a>
+                <a href="#pricing" class="nav-link">Тарифи</a>
                 <a href="#reviews" class="nav-link">Відгуки</a>
                 <a href="#cases" class="nav-link">Кейси</a>
             </nav>
             <div class="socials">
-                <a href="https://www.instagram.com/ovcharuk_agency" target="_blank" class="insta-icon">
+                <a href="https://www.instagram.com/ovcharuk007/" target="_blank" class="insta-icon">
                     <i class="fab fa-instagram"></i>
                 </a>
             </div>
@@ -32,19 +47,79 @@
     </header>
 
 <section class="hero">
+    <!-- Decorative grid overlay -->
+    <div class="hero-grid" aria-hidden="true"></div>
+
+    <!-- Floating social/brand icons as background décor -->
+    <div class="hero-floats" aria-hidden="true">
+        <i class="fab fa-tiktok hero-float hero-float--tt-1"></i>
+        <i class="fab fa-instagram hero-float hero-float--ig-1"></i>
+        <i class="fab fa-youtube hero-float hero-float--yt-1"></i>
+        <i class="fab fa-tiktok hero-float hero-float--tt-2"></i>
+        <i class="fab fa-instagram hero-float hero-float--ig-2"></i>
+        <i class="fas fa-heart hero-float hero-float--hrt"></i>
+        <i class="fas fa-play hero-float hero-float--play"></i>
+        <i class="fas fa-bolt hero-float hero-float--bolt"></i>
+    </div>
+
+    <!-- Floating theme toggle (moved from header per request) -->
+    <button id="theme-toggle" type="button" class="theme-toggle theme-toggle--floating"
+            aria-label="Перемкнути світлу/темну тему" title="Перемкнути тему">
+        <span class="theme-toggle__track" aria-hidden="true"></span>
+        <i class="fas fa-moon theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"></i>
+        <i class="fas fa-sun theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"></i>
+    </button>
+
     <div class="hero-container">
         <div class="hero-content">
+            <span class="hero-eyebrow">
+                <span class="hero-eyebrow__dot"></span>
+                Digital Agency · 2026
+            </span>
             <h1 class="hero-title">БУДУЄМО БІЗНЕСИ, ЩО <span class="neon">ПРОДАЮТЬ.</span></h1>
-            <p class="hero-subtitle">Просування у Tik Tok & Instagram reels | SMM | Оренда костюмів</p>
+            <p class="hero-subtitle">Просування у Tik Tok &amp; Instagram reels | SMM | Оренда костюмів</p>
             <div class="hero-btns">
-                <a href="#order" class="btn-primary">Замовити послугу</a>
+                <a href="#order" class="btn-primary">
+                    <span class="btn-primary__label">Замовити послугу</span>
+                    <span class="btn-primary__arrow" aria-hidden="true">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </a>
+                <a href="#cases" class="btn-ghost">
+                    <i class="fas fa-play btn-ghost__icon" aria-hidden="true"></i>
+                    <span>Дивитись кейси</span>
+                </a>
+            </div>
+
+            <div class="hero-chips">
+                <div class="hero-chip">
+                    <i class="fab fa-tiktok hero-chip__icon"></i>
+                    <span class="hero-chip__num">2M+</span>
+                    <span class="hero-chip__label">переглядів</span>
+                </div>
+                <div class="hero-chip hero-chip--cyan">
+                    <i class="fab fa-instagram hero-chip__icon"></i>
+                    <span class="hero-chip__num">×11</span>
+                    <span class="hero-chip__label">ROAS</span>
+                </div>
+                <div class="hero-chip hero-chip--fire">
+                    <i class="fas fa-fire hero-chip__icon"></i>
+                    <span class="hero-chip__num">48h</span>
+                    <span class="hero-chip__label">до запуску</span>
+                </div>
             </div>
         </div>
+
         <div class="hero-image">
+            <span class="hero-image__badge">
+                <span class="hero-image__pulse"></span>
+                LIVE · Ovcharuk
+            </span>
             <img src="img/a592d7a8-b631-4e0e-ae82-aac5482f0816.jpg" alt="Ovcharuk">
+            <span class="hero-image__ring" aria-hidden="true"></span>
         </div>
     </div>
-    <div class="glow-divider"></div> 
+    <div class="glow-divider"></div>
 </section>
 
 <section class="info-cards" id="services">
@@ -58,30 +133,31 @@
     </div>
 
     <div class="cards-container">
-        <div class="card">
+        <div class="card card--tt">
             <div class="card-line-top"></div>
             <div class="card-icon"><i class="fab fa-tiktok"></i></div>
             <h2 class="card-title">TikTok &amp; Reels Production</h2>
             <p class="card-text">Створюємо віральний відеоконтент, який захоплює увагу з першої секунди. Від ідеї та сценарію до професійного монтажу.</p>
-            <a href="#" class="card-btn">Дізнатись більше</a>
+            <a href="#cases" class="card-btn">Дивитись кейси <i class="fas fa-arrow-right"></i></a>
             <div class="card-line-bottom"></div>
         </div>
 
-        <div class="card">
+        <div class="card card--ai">
+            <span class="card-feature-badge"><i class="fas fa-wand-magic-sparkles"></i> Інтерактив</span>
             <div class="card-line-top"></div>
             <div class="card-icon"><i class="fas fa-robot"></i></div>
             <h2 class="card-title">ШІ асистент для Direct</h2>
             <p class="card-text">Впроваджуємо розумних ботів, які обробляють запити 24/7, кваліфікують лідів та закривають продажі прямо у вашому Direct.</p>
-            <a href="#" id="open-ai-chat-service" class="card-btn">Дізнатись більше</a>
+            <a href="#" id="open-ai-chat-service" class="card-btn">Спробувати в чаті <i class="fas fa-arrow-right"></i></a>
             <div class="card-line-bottom"></div>
         </div>
 
-        <div class="card">
+        <div class="card card--influence">
             <div class="card-line-top"></div>
             <div class="card-icon"><i class="fas fa-handshake"></i></div>
             <h2 class="card-title">Робота з блогерами</h2>
             <p class="card-text">Повний цикл маркетингу впливу: від підбору ідеальних облич до контролю виходу публікацій та аналізу результатів.</p>
-            <a href="#" class="card-btn">Дізнатись більше</a>
+            <a href="#order" class="card-btn">Замовити підбір <i class="fas fa-arrow-right"></i></a>
             <div class="card-line-bottom"></div>
         </div>
     </div>
@@ -376,42 +452,6 @@
             <div class="bento-card__arrow bento-card__arrow--cyan"><i class="fas fa-arrow-right"></i></div>
         </div>
 
-        <!-- Тариф 1: Оптимальний старт -->
-        <div class="bento-card bento-tariff" id="bento-tariff-1">
-            <div class="bento-card__glow"></div>
-            <span class="bento-badge bento-badge--sm"><i class="fas fa-bolt"></i> Оптимальний старт</span>
-            <div class="tariff-price">
-                <span class="tariff-currency">$</span><span class="bento-count tariff-count" data-target="750">0</span>
-                <span class="tariff-period">/міс</span>
-            </div>
-            <h3 class="bento-card__title tariff-title">15 роликів на місяць</h3>
-            <p class="tariff-sub">15 Reels + 15 TikTok = <strong>30 роликів</strong></p>
-            <ul class="tariff-list">
-                <li><i class="fab fa-instagram"></i><i class="fab fa-tiktok"></i> <span class="tariff-views">200 тис — 500 тис переглядів</span></li>
-                <li><i class="fas fa-clock"></i> Тривалість від 15 до 60 сек</li>
-                <li><i class="fas fa-share-nodes"></i> Reels + дублювання в TikTok</li>
-            </ul>
-            <a href="#order" class="tariff-btn">Замовити</a>
-        </div>
-
-        <!-- Тариф 2: Максимальний ріст -->
-        <div class="bento-card bento-tariff bento-tariff--pro" id="bento-tariff-2">
-            <div class="bento-card__glow bento-card__glow--pro"></div>
-            <span class="bento-badge bento-badge--sm bento-badge--fire"><i class="fas fa-fire"></i> Максимальний ріст</span>
-            <div class="tariff-price tariff-price--pro">
-                <span class="tariff-currency">$</span><span class="bento-count tariff-count" data-target="1050">0</span>
-                <span class="tariff-period">/міс</span>
-            </div>
-            <h3 class="bento-card__title tariff-title">30 роликів на місяць</h3>
-            <p class="tariff-sub">30 Reels + 30 TikTok = <strong>60 роликів</strong></p>
-            <ul class="tariff-list">
-                <li><i class="fab fa-instagram"></i><i class="fab fa-tiktok"></i> <span class="tariff-views tariff-views--pro">500 тис — 1 млн переглядів</span></li>
-                <li><i class="fas fa-clock"></i> Тривалість від 15 до 60 сек</li>
-                <li><i class="fas fa-share-nodes"></i> Reels + дублювання в TikTok</li>
-            </ul>
-            <a href="#order" class="tariff-btn tariff-btn--pro">Замовити</a>
-        </div>
-
         <!-- CARD 4: Viral Mastery — Wide -->
         <div class="bento-card bento-card--wide" id="bento-viral">
             <div class="bento-card__glow bento-card__glow--wide"></div>
@@ -435,6 +475,62 @@
     </div>
     <div class="glow-divider"></div>
 </section>
+
+<section class="pricing-section" id="pricing">
+    <div class="pricing-orb pricing-orb--1" aria-hidden="true"></div>
+    <div class="pricing-orb pricing-orb--2" aria-hidden="true"></div>
+
+    <div class="bento-section-header">
+        <span class="bento-eyebrow"><i class="fas fa-tags"></i> Тарифи</span>
+        <h2 class="bento-main-title">Обери свій <span class="bento-title-accent">пакет</span></h2>
+        <p class="pricing-lead">Прозорі тарифи без прихованих платежів. Повний цикл: сценарій, зйомка, монтаж і щоденне просування.</p>
+        <div class="bento-title-line"></div>
+    </div>
+
+    <div class="pricing-grid">
+        <!-- Тариф 1: Оптимальний старт -->
+        <div class="pricing-card" id="pricing-start">
+            <div class="pricing-card__glow"></div>
+            <span class="bento-badge bento-badge--sm"><i class="fas fa-bolt"></i> Оптимальний старт</span>
+            <div class="tariff-price">
+                <span class="tariff-currency">$</span><span class="bento-count tariff-count" data-target="750">0</span>
+                <span class="tariff-period">/міс</span>
+            </div>
+            <h3 class="bento-card__title tariff-title">15 роликів на місяць</h3>
+            <p class="tariff-sub">15 Reels + 15 TikTok = <strong>30 роликів</strong></p>
+            <ul class="tariff-list">
+                <li><i class="fas fa-circle-check"></i> <span class="tariff-views">200 тис — 500 тис переглядів</span></li>
+                <li><i class="fas fa-circle-check"></i> Тривалість від 15 до 60 сек</li>
+                <li><i class="fas fa-circle-check"></i> Reels + дублювання в TikTok</li>
+                <li><i class="fas fa-circle-check"></i> Унікальні сценарії під нішу</li>
+            </ul>
+            <a href="#order" class="tariff-btn">Замовити</a>
+        </div>
+
+        <!-- Тариф 2: Максимальний ріст -->
+        <div class="pricing-card pricing-card--pro" id="pricing-pro">
+            <span class="pricing-ribbon"><i class="fas fa-fire"></i> Вибір агенції</span>
+            <div class="pricing-card__glow pricing-card__glow--pro"></div>
+            <span class="bento-badge bento-badge--sm bento-badge--fire"><i class="fas fa-fire"></i> Максимальний ріст</span>
+            <div class="tariff-price tariff-price--pro">
+                <span class="tariff-currency">$</span><span class="bento-count tariff-count" data-target="1050">0</span>
+                <span class="tariff-period">/міс</span>
+            </div>
+            <h3 class="bento-card__title tariff-title">30 роликів на місяць</h3>
+            <p class="tariff-sub">30 Reels + 30 TikTok = <strong>60 роликів</strong></p>
+            <ul class="tariff-list">
+                <li><i class="fas fa-circle-check"></i> <span class="tariff-views tariff-views--pro">500 тис — 1 млн переглядів</span></li>
+                <li><i class="fas fa-circle-check"></i> Тривалість від 15 до 60 сек</li>
+                <li><i class="fas fa-circle-check"></i> Reels + дублювання в TikTok</li>
+                <li><i class="fas fa-circle-check"></i> Пріоритетний монтаж і підтримка</li>
+            </ul>
+            <a href="#order" class="tariff-btn tariff-btn--pro">Замовити</a>
+        </div>
+    </div>
+
+    <p class="pricing-note"><i class="fas fa-headset"></i> Потрібен індивідуальний пакет? <a href="#order">Напишіть нам</a> — порахуємо під ваші задачі.</p>
+</section>
+
 <section class="workflow-section" id="workflow">
     <div class="workflow-header-wrap">
         <span class="bento-eyebrow"><i class="fas fa-route"></i> Процес роботи</span>
@@ -523,64 +619,93 @@
             
             <div class="reviews-slider">
                 <div class="reviews-track">
+                    <!-- TODO: заміни href="#" на реальний @нік клієнта та текст відгуку на справжній -->
                     <div class="card review-card">
-                        <h3 class="reviewer-name">Дмитро, юрист</h3>
                         <div class="reviewer-avatar-container">
-                            <img src="img/5752224.png" alt="User" class="reviewer-avatar">
+                            <span class="reviewer-monogram reviewer-monogram--violet"><i class="fas fa-eye"></i></span>
                         </div>
-                        <div class="rating-stars">★★★★★</div>
+                        <h3 class="reviewer-name">Лікар-офтальмолог</h3>
+                        <span class="reviewer-meta"><i class="fas fa-stethoscope"></i> Офтальмологія · Клініка</span>
+                        <div class="rating-stars" role="img" aria-label="5 з 5">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
                         <div class="card-line-review"></div>
-                        <h4 class="review-topic">Експертний контент</h4>
-                        <p class="review-text">Завдяки правильним сценаріям ролики про захист від колекторів набрали сотні тисяч переглядів. Люди пишуть самі, охоплення стабільно високі!</p>
-                        <a href="#" class="review-btn">Перейти в Instagram</a>
+                        <h4 class="review-topic">Запис на прийом</h4>
+                        <p class="review-text" data-draft="true">Ролики про зір і профілактику почали стабільно набирати охоплення, а в Direct пішли реальні записи на консультацію.</p>
                     </div>
 
                     <div class="card review-card">
-                        <h3 class="reviewer-name">Власник «Pizzeria»</h3>
                         <div class="reviewer-avatar-container">
-                            <img src="img/5752224.png" alt="User" class="reviewer-avatar">
+                            <span class="reviewer-monogram reviewer-monogram--cyan">М</span>
                         </div>
-                        <div class="rating-stars">★★★★★</div>
+                        <h3 class="reviewer-name">Мудрик</h3>
+                        <span class="reviewer-meta"><i class="fas fa-store"></i> Локальний бренд</span>
+                        <div class="rating-stars" role="img" aria-label="5 з 5">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <div class="card-line-review"></div>
+                        <h4 class="review-topic">Зростання впізнаваності</h4>
+                        <p class="review-text" data-draft="true">Системний контент дав стабільні охоплення та новий потік клієнтів. Працювати з командою — одне задоволення.</p>
+                    </div>
+
+                    <div class="card review-card">
+                        <div class="reviewer-avatar-container">
+                            <span class="reviewer-monogram reviewer-monogram--fire"><i class="fas fa-utensils"></i></span>
+                        </div>
+                        <h3 class="reviewer-name">YAMI</h3>
+                        <span class="reviewer-meta"><i class="fas fa-bowl-food"></i> Стрітфуд · Хмельницький</span>
+                        <div class="rating-stars" role="img" aria-label="5 з 5">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
                         <div class="card-line-review"></div>
                         <h4 class="review-topic">Віральність та замовлення</h4>
-                        <p class="review-text">Наші піци стали зірками TikTok! Ролик з «Дуетом» зібрав понад 1.4 мільйона переглядів. Це дало потужний притік нових клієнтів у заклади.</p>
-                        <a href="#" class="review-btn">Перейти в Instagram</a>
+                        <p class="review-text" data-draft="true">Наші ролики залітали в рекомендації, а заклад отримав потужний притік нових гостей і замовлень.</p>
+                        <a href="https://www.instagram.com/yami.khm/" target="_blank" class="review-btn">Перейти в Instagram</a>
                     </div>
 
                     <div class="card review-card">
-                        <h3 class="reviewer-name">Магазин електроніки</h3>
                         <div class="reviewer-avatar-container">
-                            <img src="img/5752224.png" alt="User" class="reviewer-avatar">
+                            <span class="reviewer-monogram reviewer-monogram--violet">ОК</span>
                         </div>
-                        <div class="rating-stars">★★★★★</div>
+                        <h3 class="reviewer-name">Ольга Крамар</h3>
+                        <span class="reviewer-meta"><i class="fas fa-user"></i> Особистий бренд</span>
+                        <div class="rating-stars" role="img" aria-label="5 з 5">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
                         <div class="card-line-review"></div>
-                        <h4 class="review-topic">Мільйонні охоплення</h4>
-                        <p class="review-text">Команда зробила неможливе: звичайні огляди товарів почали збирати по 1.1 - 2 мільйони переглядів. Впізнаваність бренду зросла миттєво.</p>
-                        <a href="#" class="review-btn">Перейти в Instagram</a>
+                        <h4 class="review-topic">Особистий бренд</h4>
+                        <p class="review-text" data-draft="true">Завдяки правильним сценаріям мій блог почав рости органічно — аудиторія залучена, охоплення зросли в рази.</p>
+                        <a href="https://www.instagram.com/o_kramar/" target="_blank" class="review-btn">Перейти в Instagram</a>
                     </div>
 
                     <div class="card review-card">
-                        <h3 class="reviewer-name">Олена, SMM-менеджер</h3>
                         <div class="reviewer-avatar-container">
-                            <img src="img/5752224.png" alt="User" class="reviewer-avatar">
+                            <span class="reviewer-monogram reviewer-monogram--cyan"><i class="fas fa-store"></i></span>
                         </div>
-                        <div class="rating-stars">★★★★★</div>
+                        <h3 class="reviewer-name">«Щодня»</h3>
+                        <span class="reviewer-meta"><i class="fas fa-bag-shopping"></i> Локальний рітейл</span>
+                        <div class="rating-stars" role="img" aria-label="5 з 5">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
                         <div class="card-line-review"></div>
-                        <h4 class="review-topic">Стабільний результат</h4>
-                        <p class="review-text">Працюємо на постійній основі. Кожен місяць маємо ролики, які залітають на 200к+ переглядів. Дуже системний та професійний підхід.</p>
-                        <a href="#" class="review-btn">Перейти в Instagram</a>
+                        <h4 class="review-topic">Локальні охоплення</h4>
+                        <p class="review-text" data-draft="true">Серія Reels у співавторстві дала накопичений ефект: понад 200К переглядів і впізнаваність серед місцевої аудиторії.</p>
+                        <a href="https://www.instagram.com/shchodnia.official/" target="_blank" class="review-btn">Перейти в Instagram</a>
                     </div>
 
                     <div class="card review-card">
-                        <h3 class="reviewer-name">Андрій, підприємець</h3>
                         <div class="reviewer-avatar-container">
-                            <img src="img/5752224.png" alt="User" class="reviewer-avatar">
+                            <span class="reviewer-monogram reviewer-monogram--fire">AT</span>
                         </div>
-                        <div class="rating-stars">★★★★★</div>
+                        <h3 class="reviewer-name">Лосіни Alla Tolina</h3>
+                        <span class="reviewer-meta"><i class="fas fa-shirt"></i> Жіночий одяг</span>
+                        <div class="rating-stars" role="img" aria-label="5 з 5">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
                         <div class="card-line-review"></div>
-                        <h4 class="review-topic">Креативний монтаж</h4>
-                        <p class="review-text">Якість відео та динаміка монтажу на висоті. Глядачі додивляються ролики до кінця, що дає алгоритмам сигнал просувати нас далі.</p>
-                        <a href="#" class="review-btn">Дивитись кейс</a>
+                        <h4 class="review-topic">Продажі через контент</h4>
+                        <p class="review-text" data-draft="true">Контент під продукт зачепив цільову аудиторію — ролики приносять стабільні замовлення та нових підписників.</p>
+                        <a href="https://www.instagram.com/__alla_tolina__/" target="_blank" class="review-btn">Перейти в Instagram</a>
                     </div>
                 </div>
             </div>
@@ -607,14 +732,18 @@
     </div>
 
     <div class="download-grid">
-        <!-- Card 1: Commercial Proposal -->
+        <!-- Card 1: Commercial Proposal (REAL FILE) -->
         <div class="download-card bento-card">
             <div class="bento-card__glow"></div>
             <div class="download-card-content">
                 <span class="bento-badge"><i class="fas fa-file-pdf"></i> PDF</span>
                 <h3 class="download-card-title">Комерційна пропозиція</h3>
                 <p class="download-card-desc">Повний опис стратегії просування та технічні деталі співпраці.</p>
-                <a href="#" class="download-card-btn">
+                <div class="download-card-meta">
+                    <span class="download-tag"><i class="fas fa-file-lines"></i> PDF</span>
+                    <span class="download-tag download-tag--ok"><i class="fas fa-circle-check"></i> Доступно</span>
+                </div>
+                <a href="docs/Ovcharuk_Agency_Commercial.pdf" target="_blank" download class="download-card-btn">
                     <span>Скачати</span>
                     <i class="fas fa-download"></i>
                 </a>
@@ -628,10 +757,14 @@
                 <span class="bento-badge bento-badge--cyan"><i class="fas fa-shield-halved"></i> Legal</span>
                 <h3 class="download-card-title">Політика конфіденційності</h3>
                 <p class="download-card-desc">Документ, що регламентує обробку та захист ваших персональних даних.</p>
-                <a href="#" class="download-card-btn">
-                    <span>Скачати</span>
-                    <i class="fas fa-download"></i>
-                </a>
+                <div class="download-card-meta">
+                    <span class="download-tag"><i class="fas fa-file-lines"></i> PDF</span>
+                    <span class="download-tag download-tag--soon"><i class="fas fa-clock"></i> Скоро</span>
+                </div>
+                <button type="button" class="download-card-btn download-card-btn--soon" disabled>
+                    <span>Готується</span>
+                    <i class="fas fa-hourglass-half"></i>
+                </button>
             </div>
         </div>
 
@@ -642,10 +775,14 @@
                 <span class="bento-badge"><i class="fas fa-book-open"></i> Info</span>
                 <h3 class="download-card-title">Кейси та процеси</h3>
                 <p class="download-card-desc">Детальний розбір наших успішних проектів та етапів роботи.</p>
-                <a href="#" class="download-card-btn">
-                    <span>Скачати</span>
-                    <i class="fas fa-download"></i>
-                </a>
+                <div class="download-card-meta">
+                    <span class="download-tag"><i class="fas fa-file-lines"></i> PDF</span>
+                    <span class="download-tag download-tag--soon"><i class="fas fa-clock"></i> Скоро</span>
+                </div>
+                <button type="button" class="download-card-btn download-card-btn--soon" disabled>
+                    <span>Готується</span>
+                    <i class="fas fa-hourglass-half"></i>
+                </button>
             </div>
         </div>
 
@@ -656,10 +793,14 @@
                 <span class="bento-badge bento-badge--fire"><i class="fas fa-star"></i> VIP Offer</span>
                 <h3 class="download-card-title">Розширена пропозиція</h3>
                 <p class="download-card-desc">Ексклюзивні пакети послуг та додаткові умови для великого бізнесу.</p>
-                <a href="#" class="download-card-btn">
-                    <span>Скачати</span>
-                    <i class="fas fa-download"></i>
-                </a>
+                <div class="download-card-meta">
+                    <span class="download-tag"><i class="fas fa-file-lines"></i> PDF</span>
+                    <span class="download-tag download-tag--soon"><i class="fas fa-clock"></i> Скоро</span>
+                </div>
+                <button type="button" class="download-card-btn download-card-btn--soon" disabled>
+                    <span>Готується</span>
+                    <i class="fas fa-hourglass-half"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -709,7 +850,8 @@
     <div class="faq-container">
         <div class="faq-item">
             <button type="button" class="faq-question">
-                <span>Які терміни створення стратегії просування?</span>
+                <span class="faq-q-icon"><i class="fas fa-clock"></i></span>
+                <span class="faq-q-text">Які терміни створення стратегії просування?</span>
                 <i class="arrow-down"></i>
             </button>
             <div class="faq-answer">
@@ -721,7 +863,8 @@
 
         <div class="faq-item">
             <button type="button" class="faq-question">
-                <span>Чи займаєтеся ви монтажем роликів?</span>
+                <span class="faq-q-icon"><i class="fas fa-scissors"></i></span>
+                <span class="faq-q-text">Чи займаєтеся ви монтажем роликів?</span>
                 <i class="arrow-down"></i>
             </button>
             <div class="faq-answer">
@@ -733,7 +876,8 @@
 
         <div class="faq-item">
             <button type="button" class="faq-question">
-                <span>Як ви оцінюєте ефективність роботи?</span>
+                <span class="faq-q-icon"><i class="fas fa-chart-line"></i></span>
+                <span class="faq-q-text">Як ви оцінюєте ефективність роботи?</span>
                 <i class="arrow-down"></i>
             </button>
             <div class="faq-answer">
@@ -745,7 +889,8 @@
 
         <div class="faq-item">
             <button type="button" class="faq-question">
-                <span>Чи працюєте ви з персональними брендами?</span>
+                <span class="faq-q-icon"><i class="fas fa-user-tie"></i></span>
+                <span class="faq-q-text">Чи працюєте ви з персональними брендами?</span>
                 <i class="arrow-down"></i>
             </button>
             <div class="faq-answer">
@@ -757,7 +902,8 @@
 
         <div class="faq-item">
             <button type="button" class="faq-question">
-                <span>Який бюджет потрібен на старті?</span>
+                <span class="faq-q-icon"><i class="fas fa-wallet"></i></span>
+                <span class="faq-q-text">Який бюджет потрібен на старті?</span>
                 <i class="arrow-down"></i>
             </button>
             <div class="faq-answer">
@@ -767,42 +913,62 @@
             </div>
         </div>
     </div>
+
+    <div class="faq-cta">
+        <div class="faq-cta__icon"><i class="fas fa-comments"></i></div>
+        <div class="faq-cta__text">
+            <h4>Не знайшли відповідь?</h4>
+            <p>Напишіть нам — відповімо за лічені хвилини.</p>
+        </div>
+        <a href="#order" class="faq-cta__btn">Поставити запитання</a>
+    </div>
 </section>
     <footer class="main-footer">
         <div class="footer-container">
+            <div class="footer-column footer-brand">
+                <a href="#" class="footer-logo">OVCHARUK <span class="accent">AGENCY</span></a>
+                <p class="footer-tagline">Будуємо бізнеси, що продають. Віральний контент у TikTok &amp; Reels, SMM та робота з блогерами.</p>
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/ovcharuk007/" target="_blank" class="footer-social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@ovcharuk007" target="_blank" class="footer-social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-v-line"></div>
+
             <div class="footer-column footer-nav">
                 <h4 class="footer-title">Навігація</h4>
                 <div class="footer-links">
                     <a href="#about" class="footer-link">Про нас</a>
                     <a href="#services" class="footer-link">Послуги</a>
+                    <a href="#pricing" class="footer-link">Тарифи</a>
                     <a href="#cases" class="footer-link">Кейси</a>
                     <a href="#reviews" class="footer-link">Відгуки</a>
-                    <a href="#order" class="footer-link">Замовити</a>
                 </div>
             </div>
-            
-            <div class="footer-v-line"></div>
 
-            <div class="footer-column footer-legal">
-                <h4 class="footer-title">Документи</h4>
+            <div class="footer-column footer-contacts">
+                <h4 class="footer-title">Контакти</h4>
                 <div class="footer-links">
-                    <a href="#" class="footer-link">Політика конфіденційності</a>
-                    <a href="#" class="footer-link">Умови користування</a>
+                    <a href="tel:+380000000000" class="footer-contact"><i class="fas fa-phone-alt"></i> +380 00 000 00 00</a>
+                    <a href="mailto:hello@ovcharuk.agency" class="footer-contact"><i class="fas fa-envelope"></i> hello@ovcharuk.agency</a>
+                    <a href="https://t.me/ovcharuk007" target="_blank" class="footer-contact"><i class="fab fa-telegram"></i> Telegram</a>
                 </div>
-            </div>
-
-            <div class="footer-column footer-social">
-                <h4 class="footer-title">Ми в Instagram</h4>
-                <a href="https://www.instagram.com/ovcharuk_agency" target="_blank" class="footer-insta-btn">
-                    <i class="fab fa-instagram"></i>
-                    <span>@ovcharuk_agency</span>
-                </a>
+                <a href="#order" class="footer-cta">Залишити заявку <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 OVCHARUK AGENCY. Всі права захищені.</p>
+            <div class="footer-legal-links">
+                <a href="#" class="footer-link">Політика конфіденційності</a>
+                <a href="#" class="footer-link">Умови користування</a>
+            </div>
         </div>
     </footer>
+
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Наверх">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
 <button id="chat-toggle-btn" class="chat-trigger-btn">
     <i class="fas fa-robot"></i>
@@ -833,7 +999,13 @@
             <div class="msg bot-msg">Привіт! Я ШІ-асистент Ovcharuk Agency. Запитай мене про наші кейси, тарифи або просування! 🚀</div>
         </div>
     </div>
-    
+
+    <div class="chat-quick-replies" id="chat-quick-replies">
+        <button type="button" class="chat-quick-chip" data-msg="Розкажи про ваші тарифи">💰 Тарифи</button>
+        <button type="button" class="chat-quick-chip" data-msg="Покажи приклади кейсів">📈 Кейси</button>
+        <button type="button" class="chat-quick-chip" data-msg="Як замовити послугу?">🚀 Замовити</button>
+    </div>
+
     <div class="chat-input-area">
         <input type="text" id="chat-user-input" placeholder="Запитати про кейси або тарифи...">
         <button id="send-chat-btn"><i class="fas fa-paper-plane"></i></button>
