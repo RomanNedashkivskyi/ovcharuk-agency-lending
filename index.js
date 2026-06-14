@@ -22,6 +22,111 @@
     toggle();
 })();
 
+/* === Sticky mobile CTA bar — show after hero, hide near footer === */
+(function () {
+    const bar = document.getElementById('mobile-cta-bar');
+    if (!bar) return;
+
+    const hero = document.querySelector('.hero');
+    const footer = document.querySelector('.main-footer');
+
+    function update() {
+        if (window.innerWidth > 768) {
+            bar.classList.remove('is-visible');
+            return;
+        }
+        const past = hero ? window.scrollY > hero.offsetHeight * 0.6 : window.scrollY > 400;
+        const nearFooter = footer
+            ? footer.getBoundingClientRect().top < window.innerHeight - 80
+            : false;
+        bar.classList.toggle('is-visible', past && !nearFooter);
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+
+    const chatBtn = document.getElementById('mobile-cta-chat');
+    if (chatBtn) {
+        chatBtn.addEventListener('click', () => {
+            const trigger = document.getElementById('chat-toggle-btn');
+            if (trigger) trigger.click();
+        });
+    }
+})();
+
+/* === Mobile-only: collapse 4 mini-info cards per case behind a toggle === */
+(function () {
+    const rows = document.querySelectorAll('.case-row');
+    if (!rows.length) return;
+
+    rows.forEach((row, idx) => {
+        const grid = row.querySelector('.case-info-grid');
+        if (!grid) return;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'case-toggle';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-controls', 'case-info-' + (idx + 1));
+        grid.id = 'case-info-' + (idx + 1);
+        btn.innerHTML = '<span class="case-toggle__text">Дізнатись більше</span><i class="fas fa-chevron-down case-toggle__icon" aria-hidden="true"></i>';
+        row.insertBefore(btn, grid);
+        btn.addEventListener('click', () => {
+            const open = row.classList.toggle('is-expanded');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            btn.querySelector('.case-toggle__text').textContent = open ? 'Згорнути деталі' : 'Дізнатись більше';
+        });
+    });
+})();
+
+/* === Reels embed: scale IG iframe (326x580 natural) to fit each phone screen === */
+(function () {
+    const screens = document.querySelectorAll('.reel-phone__screen--embed');
+    if (!screens.length) return;
+
+    function fit() {
+        screens.forEach((s) => {
+            const w = s.clientWidth;
+            if (w > 0) s.style.setProperty('--reel-scale', (w / 326).toFixed(4));
+        });
+    }
+    // Run after layout settles + on resize
+    if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(fit);
+        screens.forEach((s) => ro.observe(s));
+    } else {
+        window.addEventListener('resize', fit);
+    }
+    // Initial pass after fonts/layout
+    if (document.readyState === 'complete') fit();
+    else window.addEventListener('load', fit);
+    requestAnimationFrame(fit);
+})();
+
+/* === Hero cursor spotlight (desktop only, mouse-driven) === */
+(function () {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    if (window.matchMedia('(max-width: 768px), (hover: none)').matches) return;
+
+    let raf = 0;
+    let mx = 50, my = 50;
+    function apply() {
+        raf = 0;
+        hero.style.setProperty('--mx', mx + '%');
+        hero.style.setProperty('--my', my + '%');
+    }
+    hero.addEventListener('mousemove', (e) => {
+        const r = hero.getBoundingClientRect();
+        mx = ((e.clientX - r.left) / r.width) * 100;
+        my = ((e.clientY - r.top) / r.height) * 100;
+        if (!raf) raf = requestAnimationFrame(apply);
+    }, { passive: true });
+    hero.addEventListener('mouseleave', () => {
+        mx = 50; my = 50;
+        if (!raf) raf = requestAnimationFrame(apply);
+    });
+})();
+
 /* === Mobile navigation (hamburger dropdown) === */
 (function () {
     const header = document.querySelector('.main-header');
@@ -259,7 +364,7 @@ document.querySelectorAll('.faq-question').forEach(button => {
     }, { threshold: 0.2 });
 
     // Observe all cards and results sections that might have counters
-    document.querySelectorAll('.bento-card, .case-results, .pricing-card').forEach(el => {
+    document.querySelectorAll('.bento-card, .case-results').forEach(el => {
         if (el.querySelector('.bento-count')) {
             countObserver.observe(el);
         }
@@ -287,19 +392,23 @@ async function sendToTelegram(message) {
 document.querySelector(".order-form").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const inputs = document.querySelectorAll(".order-form input");
-    const service = document.querySelector(".order-form select").value;
+    const form = e.currentTarget;
+    const textInputs = form.querySelectorAll('input[type="text"], input[type="tel"]');
+    const service = form.querySelector(".custom-select").value;
+    const slotInput = form.querySelector('input[name="callTime"]:checked');
+    const callTime = slotInput ? slotInput.value : "Будь-який час";
 
-    const fullName = inputs[0].value.trim();
-    const phone = inputs[1].value.trim();
-    const instagram = inputs[2].value.trim();
+    const fullName = textInputs[0].value.trim();
+    const phone = textInputs[1].value.trim();
+    const instagram = textInputs[2].value.trim();
 
     const msg =
         `📩 <b>Нова заявка з сайту</b>\n\n` +
         `👤 Ім'я: ${fullName}\n` +
         `📞 Телефон: ${phone}\n` +
         `📸 Instagram: ${instagram}\n` +
-        `🛠 Послуга: ${service}\n\n` +
+        `🛠 Послуга: ${service}\n` +
+        `⏰ Зручний час: ${callTime}\n\n` +
         `🌐 Джерело: сайт агенції`;
 
     try {
@@ -343,7 +452,12 @@ document.addEventListener("DOMContentLoaded", () => {
         chatOverlay.classList.add("hidden");
     }
 
-    if (chatToggleBtn) chatToggleBtn.addEventListener("click", openChat);
+    function toggleChat(e) {
+        if (e) e.preventDefault();
+        if (chatWindow.classList.contains("hidden")) openChat();
+        else closeChat();
+    }
+    if (chatToggleBtn) chatToggleBtn.addEventListener("click", toggleChat);
     if (openChatServiceBtn) openChatServiceBtn.addEventListener("click", openChat);
     if (closeChatBtn) closeChatBtn.addEventListener("click", closeChat);
     if (chatOverlay) chatOverlay.addEventListener("click", closeChat);
@@ -351,6 +465,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // Прокрутка до кінця
     function scrollToBottom() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Безпечно рендеримо лише <b>/<strong>/<br> з ботського тексту; усе інше escape-аємо
+    function renderBotMarkup(raw) {
+        const escaped = raw
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+        return escaped
+            .replace(/&lt;br\s*\/?&gt;/gi, "<br>")
+            .replace(/&lt;(\/?)(b|strong)&gt;/gi, "<$1$2>");
     }
 
     // Створення HTML повідомлення
@@ -364,7 +489,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const msgDiv = document.createElement("div");
         msgDiv.className = `msg ${isUser ? "user-msg" : "bot-msg"}`;
-        msgDiv.textContent = text;
+        if (isUser) {
+            // юзер-текст завжди як plain
+            msgDiv.textContent = text;
+        } else {
+            // Бот: дозволяємо лише <b>, <strong>, <br>
+            msgDiv.innerHTML = renderBotMarkup(text);
+        }
 
         msgGroup.appendChild(senderLabel);
         msgGroup.appendChild(msgDiv);
@@ -472,11 +603,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Quick-reply chips — prefill and send
+    // Quick-reply chips — auto-send OR prefill (data-prefill keeps it editable)
     const quickReplies = document.getElementById("chat-quick-replies");
     if (quickReplies) {
         quickReplies.querySelectorAll(".chat-quick-chip").forEach((chip) => {
             chip.addEventListener("click", () => {
+                const prefill = chip.dataset.prefill;
+                if (prefill) {
+                    // Insert text — DO NOT send; user appends @нік/URL then submits
+                    chatUserInput.value = prefill;
+                    if (chip.dataset.placeholder) {
+                        chatUserInput.placeholder = chip.dataset.placeholder;
+                    }
+                    chatUserInput.focus();
+                    // Move cursor to the very end
+                    const len = chatUserInput.value.length;
+                    try { chatUserInput.setSelectionRange(len, len); } catch (_) {}
+                    // Don't hide chips — user may want another shortcut
+                    return;
+                }
                 chatUserInput.value = chip.dataset.msg || chip.textContent.trim();
                 handleSendMessage();
                 quickReplies.classList.add("is-hidden");

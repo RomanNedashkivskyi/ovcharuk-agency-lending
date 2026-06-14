@@ -31,7 +31,6 @@
             <nav class="nav-menu">
                 <a href="#about" class="nav-link">Про нас</a>
                 <a href="#services" class="nav-link">Послуги</a>
-                <a href="#pricing" class="nav-link">Тарифи</a>
                 <a href="#reviews" class="nav-link">Відгуки</a>
                 <a href="#cases" class="nav-link">Кейси</a>
             </nav>
@@ -122,6 +121,95 @@
     <div class="glow-divider"></div>
 </section>
 
+<!-- Trust strip — нескінченний marquee з назвами клієнтів + сегментами -->
+<section class="trust-marquee" aria-label="Нам довіряють">
+    <div class="trust-marquee__label">
+        <span class="trust-marquee__dot"></span>
+        Нам довіряють
+    </div>
+    <div class="trust-marquee__viewport" aria-hidden="true">
+        <!-- Дублюємо track двічі для безшовної нескінченної прокрутки -->
+        <div class="trust-marquee__track">
+            <span class="trust-item"><i class="fas fa-utensils trust-item__ico"></i> YAMI</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item"><i class="fas fa-store trust-item__ico"></i> Щодня</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item">Alla Tolina</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item">Підприємці Хмельницького</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item">Малий бізнес</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item"><i class="fas fa-briefcase trust-item__ico"></i> Локальний рітейл</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item">Медичні клініки</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item">Особисті бренди</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item"><i class="fas fa-bowl-food trust-item__ico"></i> HoReCa</span>
+            <span class="trust-item__sep">✦</span>
+        </div>
+        <div class="trust-marquee__track" aria-hidden="true">
+            <span class="trust-item"><i class="fas fa-utensils trust-item__ico"></i> YAMI</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item"><i class="fas fa-store trust-item__ico"></i> Щодня</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item">Alla Tolina</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item">Підприємці Хмельницького</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item">Малий бізнес</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item"><i class="fas fa-briefcase trust-item__ico"></i> Локальний рітейл</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item">Медичні клініки</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item">Особисті бренди</span>
+            <span class="trust-item__sep">✦</span>
+            <span class="trust-item"><i class="fas fa-bowl-food trust-item__ico"></i> HoReCa</span>
+            <span class="trust-item__sep">✦</span>
+        </div>
+    </div>
+</section>
+
+<!-- Проблема/контекст — що болить у клієнтів, які приходять до нас -->
+<section class="problem-section" aria-label="Які задачі вирішуємо">
+    <div class="problem-header">
+        <span class="bento-eyebrow"><i class="fas fa-bullseye"></i> Проблема → Рішення</span>
+        <h2 class="problem-title">Якщо ваш бізнес <span class="problem-title-accent">стикається з цим</span> —</h2>
+        <p class="problem-lead">Ми бачимо одні й ті ж проблеми у десятків ніш. І знаємо, як їх знімати системно.</p>
+    </div>
+
+    <div class="problem-grid">
+        <div class="problem-card">
+            <div class="problem-card__icon"><i class="fas fa-arrow-trend-down"></i></div>
+            <h3 class="problem-card__title">Контент «не летить»</h3>
+            <p class="problem-card__text">Постите регулярно, а охоплення мізерні. Алгоритми не підхоплюють ролики.</p>
+        </div>
+        <div class="problem-card">
+            <div class="problem-card__icon problem-card__icon--cyan"><i class="fas fa-fire-flame-curved"></i></div>
+            <h3 class="problem-card__title">Дорогий таргет</h3>
+            <p class="problem-card__text">Реклама з'їдає бюджет, а ліди — холодні. CPL росте, ROAS падає.</p>
+        </div>
+        <div class="problem-card">
+            <div class="problem-card__icon"><i class="fas fa-shuffle"></i></div>
+            <h3 class="problem-card__title">Нема системи</h3>
+            <p class="problem-card__text">Публікації хаотичні, без стратегії. Кожен пост — окремий експеримент.</p>
+        </div>
+        <div class="problem-card">
+            <div class="problem-card__icon problem-card__icon--cyan"><i class="fas fa-handshake"></i></div>
+            <h3 class="problem-card__title">Складно з блогерами</h3>
+            <p class="problem-card__text">Не знаєш кого обрати, як перевірити аудиторію, як міряти результат бартеру.</p>
+        </div>
+    </div>
+
+    <div class="problem-arrow" aria-hidden="true">
+        <span class="problem-arrow__line"></span>
+        <span class="problem-arrow__text">Ovcharuk Agency бере це на себе</span>
+        <i class="fas fa-arrow-down problem-arrow__icon"></i>
+    </div>
+</section>
+
 <section class="info-cards" id="services">
     <div class="services-intro">
         <span class="bento-eyebrow"><i class="fas fa-rocket"></i> Що ми робимо</span>
@@ -163,6 +251,97 @@
     </div>
     <div class="section-blur-bottom"></div>
 </section>
+
+<!-- Reels Gallery — 6 phone-mockup слотів для клієнтських Reels (можна вставити <video>/<iframe>) -->
+<section class="reels-section" id="reels" aria-label="Галерея Reels">
+    <div class="reels-header">
+        <span class="bento-eyebrow"><i class="fab fa-tiktok"></i> Reels Gallery</span>
+        <h2 class="reels-title">Контент, який <span class="reels-title-accent">залітає</span></h2>
+        <p class="reels-lead">Реальні ролики клієнтів — від першого тейка до сотень тисяч переглядів. Тапніть, щоб подивитись.</p>
+        <div class="bento-title-line"></div>
+    </div>
+
+    <div class="reels-grid">
+        <!-- Phone 1 — Instagram Reel embed -->
+        <article class="reel-phone" data-slot="1">
+            <div class="reel-phone__notch"></div>
+            <div class="reel-phone__screen reel-phone__screen--embed">
+                <iframe
+                    src="https://www.instagram.com/reel/C8Wqw9Tt9qc/embed/?cr=1&v=14&wp=540&rd=http%3A%2F%2Flocalhost%3A8080"
+                    title="Ovcharuk Agency · Reel"
+                    loading="lazy"
+                    allow="autoplay; encrypted-media; picture-in-picture; web-share"
+                    allowfullscreen
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    scrolling="no"></iframe>
+            </div>
+            <span class="reel-phone__meta"><i class="fab fa-instagram"></i> Reel</span>
+        </article>
+
+        <!-- Phone 2 -->
+        <article class="reel-phone reel-phone--accent" data-slot="2">
+            <div class="reel-phone__notch"></div>
+            <div class="reel-phone__screen">
+                <div class="reel-placeholder reel-placeholder--cyan">
+                    <i class="fas fa-play reel-placeholder__icon"></i>
+                    <span class="reel-placeholder__label">Щодня · 205K</span>
+                </div>
+            </div>
+            <span class="reel-phone__meta"><i class="fab fa-instagram"></i> Reels</span>
+        </article>
+
+        <!-- Phone 3 -->
+        <article class="reel-phone" data-slot="3">
+            <div class="reel-phone__notch"></div>
+            <div class="reel-phone__screen">
+                <div class="reel-placeholder">
+                    <i class="fas fa-play reel-placeholder__icon"></i>
+                    <span class="reel-placeholder__label">Косметологія · 2M</span>
+                </div>
+            </div>
+            <span class="reel-phone__meta"><i class="fab fa-instagram"></i> Reels</span>
+        </article>
+
+        <!-- Phone 4 -->
+        <article class="reel-phone reel-phone--accent" data-slot="4">
+            <div class="reel-phone__notch"></div>
+            <div class="reel-phone__screen">
+                <div class="reel-placeholder reel-placeholder--cyan">
+                    <i class="fas fa-play reel-placeholder__icon"></i>
+                    <span class="reel-placeholder__label">Реабілітація · 3M</span>
+                </div>
+            </div>
+            <span class="reel-phone__meta"><i class="fab fa-tiktok"></i> TikTok</span>
+        </article>
+
+        <!-- Phone 5 -->
+        <article class="reel-phone" data-slot="5">
+            <div class="reel-phone__notch"></div>
+            <div class="reel-phone__screen">
+                <div class="reel-placeholder">
+                    <i class="fas fa-play reel-placeholder__icon"></i>
+                    <span class="reel-placeholder__label">Alla Tolina</span>
+                </div>
+            </div>
+            <span class="reel-phone__meta"><i class="fab fa-instagram"></i> Reels</span>
+        </article>
+
+        <!-- Phone 6 -->
+        <article class="reel-phone reel-phone--accent" data-slot="6">
+            <div class="reel-phone__notch"></div>
+            <div class="reel-phone__screen">
+                <div class="reel-placeholder reel-placeholder--cyan">
+                    <i class="fas fa-play reel-placeholder__icon"></i>
+                    <span class="reel-placeholder__label">Ольга Крамар</span>
+                </div>
+            </div>
+            <span class="reel-phone__meta"><i class="fab fa-tiktok"></i> TikTok</span>
+        </article>
+    </div>
+
+    <p class="reels-note"><i class="fas fa-circle-info"></i> Кожен слот готовий прийняти <code>&lt;video&gt;</code> або Instagram <code>&lt;iframe&gt;</code> embed — заміни вміст <code>.reel-phone__screen</code> у HTML.</p>
+</section>
+
 <section class="cases-section" id="cases">
     <!-- Floating orbs background -->
     <div class="bento-orb bento-orb--1" aria-hidden="true"></div>
@@ -244,6 +423,17 @@
                         <span class="result-label">ROAS — окупність бюджету</span>
                     </div>
                 </div>
+                <div class="results-ba" role="group" aria-label="До та після">
+                    <div class="results-ba__col results-ba__before">
+                        <span class="results-ba__num">20 000 ₴</span>
+                        <span class="results-ba__label">бюджет на блогерів</span>
+                    </div>
+                    <div class="results-ba__arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></div>
+                    <div class="results-ba__col results-ba__after">
+                        <span class="results-ba__num">220 000 ₴</span>
+                        <span class="results-ba__label">дохід клініки</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Case 2 -->
@@ -312,6 +502,17 @@
                         <span class="result-label">зростання продажів</span>
                     </div>
                     <p class="result-footer-text">Рекламний бюджет: 0 грн (бартер). Результат — мільйонне охоплення.</p>
+                </div>
+                <div class="results-ba" role="group" aria-label="До та після">
+                    <div class="results-ba__col results-ba__before">
+                        <span class="results-ba__num">0 ₴</span>
+                        <span class="results-ba__label">рекламний бюджет</span>
+                    </div>
+                    <div class="results-ba__arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></div>
+                    <div class="results-ba__col results-ba__after">
+                        <span class="results-ba__num">3M+</span>
+                        <span class="results-ba__label">охоплення (бартер)</span>
+                    </div>
                 </div>
             </div>
 
@@ -382,6 +583,17 @@
                     </div>
                     <p class="result-footer-text">Накопичений ефект серії дав охоплення, якого не дав би жоден разовий пост.</p>
                 </div>
+                <div class="results-ba" role="group" aria-label="До та після">
+                    <div class="results-ba__col results-ba__before">
+                        <span class="results-ba__num">1 пост</span>
+                        <span class="results-ba__label">разова згадка</span>
+                    </div>
+                    <div class="results-ba__arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></div>
+                    <div class="results-ba__col results-ba__after">
+                        <span class="results-ba__num">205K</span>
+                        <span class="results-ba__label">за 6 Reels серії</span>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -428,28 +640,70 @@
             </div>
         </div>
 
-        <!-- CARD 2: Direct Sales -->
-        <div class="bento-card bento-card--sm" id="bento-direct">
+        <!-- CARD 2: Direct Sales — clickable, leads to order form -->
+        <a href="#order" class="bento-card bento-card--sm bento-card--link" id="bento-direct">
             <div class="bento-card__glow"></div>
             <div class="bento-card__icon-wrap">
                 <i class="fas fa-paper-plane bento-icon"></i>
             </div>
             <span class="bento-badge bento-badge--sm"><i class="fas fa-arrow-trend-up"></i> Sales</span>
             <h3 class="bento-card__title">Direct Sales</h3>
-            <p class="bento-card__text">Перетворюємо випадкові перегляди на цільові запити. Розробляємо воронки, які ведуть клієнта від першого дотику до успішної угоди в Direct.</p>
-            <div class="bento-card__arrow"><i class="fas fa-arrow-right"></i></div>
-        </div>
+            <p class="bento-card__text">Перетворюємо перегляди на гарячі ліди в Direct. <strong class="bento-highlight">×11 ROAS</strong> на медичних послугах · <strong class="bento-highlight">200+ лідів</strong> за 6 Reels.</p>
+            <div class="bento-card__cta">
+                <span>Замовити воронку</span>
+                <span class="bento-card__arrow"><i class="fas fa-arrow-right"></i></span>
+            </div>
+        </a>
 
-        <!-- CARD 3: Scouting -->
-        <div class="bento-card bento-card--sm" id="bento-scouting">
+        <!-- CARD 3: Scouting — clickable, leads to cases -->
+        <a href="#cases" class="bento-card bento-card--sm bento-card--link" id="bento-scouting">
             <div class="bento-card__glow bento-card__glow--cyan"></div>
             <div class="bento-card__icon-wrap bento-card__icon-wrap--cyan">
                 <i class="fas fa-user-astronaut bento-icon"></i>
             </div>
             <span class="bento-badge bento-badge--sm bento-badge--cyan"><i class="fas fa-magnifying-glass"></i> Influence</span>
-            <h3 class="bento-card__title">Scouting & Influence</h3>
-            <p class="bento-card__text">Знаходимо "тих самих" лідерів думок. Тільки жива аудиторія та перевірені блогери, які стають реальними амбасадорами вашого бренду.</p>
-            <div class="bento-card__arrow bento-card__arrow--cyan"><i class="fas fa-arrow-right"></i></div>
+            <h3 class="bento-card__title">Scouting &amp; Influence</h3>
+            <p class="bento-card__text">Знаходимо «тих самих» блогерів — з живою аудиторією. <strong class="bento-highlight">5 → 1</strong> ретельний відбір · <strong class="bento-highlight">3M+</strong> охоплення через бартер.</p>
+            <div class="bento-card__cta bento-card__cta--cyan">
+                <span>Дивитись приклади</span>
+                <span class="bento-card__arrow bento-card__arrow--cyan"><i class="fas fa-arrow-right"></i></span>
+            </div>
+        </a>
+
+        <!-- Тариф 1: Оптимальний старт -->
+        <div class="bento-card bento-tariff" id="bento-tariff-1">
+            <div class="bento-card__glow"></div>
+            <span class="bento-badge bento-badge--sm"><i class="fas fa-bolt"></i> Оптимальний старт</span>
+            <div class="tariff-price">
+                <span class="tariff-currency">$</span><span class="bento-count tariff-count" data-target="750">0</span>
+                <span class="tariff-period">/міс</span>
+            </div>
+            <h3 class="bento-card__title tariff-title">15 роликів на місяць</h3>
+            <p class="tariff-sub">15 Reels + 15 TikTok = <strong>30 роликів</strong></p>
+            <ul class="tariff-list">
+                <li><i class="fab fa-instagram"></i><i class="fab fa-tiktok"></i> <span class="tariff-views">200 тис — 500 тис переглядів</span></li>
+                <li><i class="fas fa-clock"></i> Тривалість від 15 до 60 сек</li>
+                <li><i class="fas fa-share-nodes"></i> Reels + дублювання в TikTok</li>
+            </ul>
+            <a href="#order" class="tariff-btn">Замовити</a>
+        </div>
+
+        <!-- Тариф 2: Максимальний ріст -->
+        <div class="bento-card bento-tariff bento-tariff--pro" id="bento-tariff-2">
+            <div class="bento-card__glow bento-card__glow--pro"></div>
+            <span class="bento-badge bento-badge--sm bento-badge--fire"><i class="fas fa-fire"></i> Максимальний ріст</span>
+            <div class="tariff-price tariff-price--pro">
+                <span class="tariff-currency">$</span><span class="bento-count tariff-count" data-target="1050">0</span>
+                <span class="tariff-period">/міс</span>
+            </div>
+            <h3 class="bento-card__title tariff-title">30 роликів на місяць</h3>
+            <p class="tariff-sub">30 Reels + 30 TikTok = <strong>60 роликів</strong></p>
+            <ul class="tariff-list">
+                <li><i class="fab fa-instagram"></i><i class="fab fa-tiktok"></i> <span class="tariff-views tariff-views--pro">500 тис — 1 млн переглядів</span></li>
+                <li><i class="fas fa-clock"></i> Тривалість від 15 до 60 сек</li>
+                <li><i class="fas fa-share-nodes"></i> Reels + дублювання в TikTok</li>
+            </ul>
+            <a href="#order" class="tariff-btn tariff-btn--pro">Замовити</a>
         </div>
 
         <!-- CARD 4: Viral Mastery — Wide -->
@@ -474,61 +728,6 @@
 
     </div>
     <div class="glow-divider"></div>
-</section>
-
-<section class="pricing-section" id="pricing">
-    <div class="pricing-orb pricing-orb--1" aria-hidden="true"></div>
-    <div class="pricing-orb pricing-orb--2" aria-hidden="true"></div>
-
-    <div class="bento-section-header">
-        <span class="bento-eyebrow"><i class="fas fa-tags"></i> Тарифи</span>
-        <h2 class="bento-main-title">Обери свій <span class="bento-title-accent">пакет</span></h2>
-        <p class="pricing-lead">Прозорі тарифи без прихованих платежів. Повний цикл: сценарій, зйомка, монтаж і щоденне просування.</p>
-        <div class="bento-title-line"></div>
-    </div>
-
-    <div class="pricing-grid">
-        <!-- Тариф 1: Оптимальний старт -->
-        <div class="pricing-card" id="pricing-start">
-            <div class="pricing-card__glow"></div>
-            <span class="bento-badge bento-badge--sm"><i class="fas fa-bolt"></i> Оптимальний старт</span>
-            <div class="tariff-price">
-                <span class="tariff-currency">$</span><span class="bento-count tariff-count" data-target="750">0</span>
-                <span class="tariff-period">/міс</span>
-            </div>
-            <h3 class="bento-card__title tariff-title">15 роликів на місяць</h3>
-            <p class="tariff-sub">15 Reels + 15 TikTok = <strong>30 роликів</strong></p>
-            <ul class="tariff-list">
-                <li><i class="fas fa-circle-check"></i> <span class="tariff-views">200 тис — 500 тис переглядів</span></li>
-                <li><i class="fas fa-circle-check"></i> Тривалість від 15 до 60 сек</li>
-                <li><i class="fas fa-circle-check"></i> Reels + дублювання в TikTok</li>
-                <li><i class="fas fa-circle-check"></i> Унікальні сценарії під нішу</li>
-            </ul>
-            <a href="#order" class="tariff-btn">Замовити</a>
-        </div>
-
-        <!-- Тариф 2: Максимальний ріст -->
-        <div class="pricing-card pricing-card--pro" id="pricing-pro">
-            <span class="pricing-ribbon"><i class="fas fa-fire"></i> Вибір агенції</span>
-            <div class="pricing-card__glow pricing-card__glow--pro"></div>
-            <span class="bento-badge bento-badge--sm bento-badge--fire"><i class="fas fa-fire"></i> Максимальний ріст</span>
-            <div class="tariff-price tariff-price--pro">
-                <span class="tariff-currency">$</span><span class="bento-count tariff-count" data-target="1050">0</span>
-                <span class="tariff-period">/міс</span>
-            </div>
-            <h3 class="bento-card__title tariff-title">30 роликів на місяць</h3>
-            <p class="tariff-sub">30 Reels + 30 TikTok = <strong>60 роликів</strong></p>
-            <ul class="tariff-list">
-                <li><i class="fas fa-circle-check"></i> <span class="tariff-views tariff-views--pro">500 тис — 1 млн переглядів</span></li>
-                <li><i class="fas fa-circle-check"></i> Тривалість від 15 до 60 сек</li>
-                <li><i class="fas fa-circle-check"></i> Reels + дублювання в TikTok</li>
-                <li><i class="fas fa-circle-check"></i> Пріоритетний монтаж і підтримка</li>
-            </ul>
-            <a href="#order" class="tariff-btn tariff-btn--pro">Замовити</a>
-        </div>
-    </div>
-
-    <p class="pricing-note"><i class="fas fa-headset"></i> Потрібен індивідуальний пакет? <a href="#order">Напишіть нам</a> — порахуємо під ваші задачі.</p>
 </section>
 
 <section class="workflow-section" id="workflow">
@@ -632,6 +831,7 @@
                         <div class="card-line-review"></div>
                         <h4 class="review-topic">Запис на прийом</h4>
                         <p class="review-text" data-draft="true">Ролики про зір і профілактику почали стабільно набирати охоплення, а в Direct пішли реальні записи на консультацію.</p>
+                        <a href="https://www.instagram.com/ovcharuk_agency/" target="_blank" class="review-btn review-btn--ghost">Дивитись приклади</a>
                     </div>
 
                     <div class="card review-card">
@@ -646,6 +846,7 @@
                         <div class="card-line-review"></div>
                         <h4 class="review-topic">Зростання впізнаваності</h4>
                         <p class="review-text" data-draft="true">Системний контент дав стабільні охоплення та новий потік клієнтів. Працювати з командою — одне задоволення.</p>
+                        <a href="https://www.instagram.com/ovcharuk_agency/" target="_blank" class="review-btn review-btn--ghost">Дивитись приклади</a>
                     </div>
 
                     <div class="card review-card">
@@ -835,7 +1036,27 @@
                         <option value="Отримати картку">Отримати карту</option>
                     </select>
                 </div>
+
+                <!-- Inline booking — обирай зручний час дзвінка одним тапом -->
+                <div class="time-slot-picker" role="radiogroup" aria-label="Зручний час для дзвінка">
+                    <span class="time-slot-picker__label"><i class="fas fa-calendar-day"></i> Коли вам зручно?</span>
+                    <div class="time-slot-picker__grid">
+                        <input type="radio" name="callTime" id="ct-1" value="Сьогодні до 18:00" class="time-slot-input" checked>
+                        <label for="ct-1" class="time-slot">Сьогодні<br><small>до 18:00</small></label>
+
+                        <input type="radio" name="callTime" id="ct-2" value="Завтра ранок" class="time-slot-input">
+                        <label for="ct-2" class="time-slot">Завтра<br><small>9:00–12:00</small></label>
+
+                        <input type="radio" name="callTime" id="ct-3" value="Завтра після обіду" class="time-slot-input">
+                        <label for="ct-3" class="time-slot">Завтра<br><small>14:00–18:00</small></label>
+
+                        <input type="radio" name="callTime" id="ct-4" value="Будь-який час" class="time-slot-input">
+                        <label for="ct-4" class="time-slot">Не важливо<br><small>передзвоніть</small></label>
+                    </div>
+                </div>
+
                 <button type="submit" class="order-submit-btn">Відправити запит</button>
+                <p class="order-trust"><i class="fas fa-shield-halved"></i> Без спаму · Відповідаємо за 15 хв · Дані захищені</p>
             </form>
         </div>
     </section>
@@ -941,7 +1162,6 @@
                 <div class="footer-links">
                     <a href="#about" class="footer-link">Про нас</a>
                     <a href="#services" class="footer-link">Послуги</a>
-                    <a href="#pricing" class="footer-link">Тарифи</a>
                     <a href="#cases" class="footer-link">Кейси</a>
                     <a href="#reviews" class="footer-link">Відгуки</a>
                 </div>
@@ -969,6 +1189,17 @@
     <button id="back-to-top" class="back-to-top" type="button" aria-label="Наверх">
         <i class="fas fa-arrow-up"></i>
     </button>
+
+    <!-- Sticky mobile CTA bar — з'являється на ≤768px після скролу за hero -->
+    <div id="mobile-cta-bar" class="mobile-cta-bar" aria-hidden="true">
+        <a href="#order" class="mobile-cta-bar__btn mobile-cta-bar__btn--primary">
+            <i class="fas fa-phone-volume"></i>
+            <span>Замовити дзвінок</span>
+        </a>
+        <button type="button" id="mobile-cta-chat" class="mobile-cta-bar__btn mobile-cta-bar__btn--ghost" aria-label="Запитати в чаті">
+            <i class="fas fa-message"></i>
+        </button>
+    </div>
 
 <button id="chat-toggle-btn" class="chat-trigger-btn">
     <i class="fas fa-robot"></i>
@@ -1001,6 +1232,7 @@
     </div>
 
     <div class="chat-quick-replies" id="chat-quick-replies">
+        <button type="button" class="chat-quick-chip chat-quick-chip--featured" data-prefill="Хочу AI-аудит профілю: " data-placeholder="@your_username або https://instagram.com/...">🔍 AI‑аудит профілю</button>
         <button type="button" class="chat-quick-chip" data-msg="Розкажи про ваші тарифи">💰 Тарифи</button>
         <button type="button" class="chat-quick-chip" data-msg="Покажи приклади кейсів">📈 Кейси</button>
         <button type="button" class="chat-quick-chip" data-msg="Як замовити послугу?">🚀 Замовити</button>

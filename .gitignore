@@ -4,5 +4,8 @@
 node_modules/
 "ovcharuk agency bot/node_modules/"
 
+# Claude Code session files
+.claude/
+
 .DS_Store
 Thumbs.db
